@@ -11,7 +11,6 @@ const companyInfo = {
 };
 
 const heroImages = [
-  // IMPORTANT: Replace these with your chosen image URLs
   {
     src: "/nc-state.jpg",
     alt: "Autumn view of the Ohio State University campus library"

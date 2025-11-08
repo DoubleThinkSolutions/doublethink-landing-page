@@ -2,9 +2,6 @@ import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import * as React from 'react';
 
-// Create separate React components for your email templates
-// This makes them reusable and easier to manage.
-
 interface EmailTemplateToCompanyProps {
   name: string;
   email: string;
@@ -59,7 +56,7 @@ export async function POST(request: Request) {
       from: fromEmail,
       to: companyEmail,
       subject: `New Message from ${name} on your Website`,
-      react: EmailTemplateToCompany({ name, email, message }),
+      react: <EmailTemplateToCompany name={name} email={email} message={message} />,
     });
 
     // 2. Send confirmation email to the sender
@@ -67,7 +64,7 @@ export async function POST(request: Request) {
         from: fromEmail,
         to: email,
         subject: 'We\'ve Received Your Message!',
-        react: ConfirmationEmailTemplate({ name }),
+        react: <ConfirmationEmailTemplate name={name} />,
     });
 
 
