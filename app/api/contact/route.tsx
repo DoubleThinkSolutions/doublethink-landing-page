@@ -31,13 +31,15 @@ const fromEmail = process.env.FROM_EMAIL;
 export async function POST(request: Request) {
   try {
     if (!companyEmail || !fromEmail) {
-        throw new Error('Missing environment variables for email functionality.');
+        console.error('Missing environment variables:', { companyEmail: !!companyEmail, fromEmail: !!fromEmail });
+        return NextResponse.json({ error: 'Server configuration error. Please contact support.' }, { status: 500 });
     }
 
     const { name, email, message } = await request.json();
 
     if (!name || !email || !message) {
-      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+      console.error('Missing required fields:', { name: !!name, email: !!email, message: !!message });
+      return NextResponse.json({ error: 'Missing required fields: name, email, and message are required.' }, { status: 400 });
     }
 
     // 1. Send email to your company
@@ -48,6 +50,11 @@ export async function POST(request: Request) {
       html: getEmailTemplateToCompany(name, email, message),
     });
 
+    if (toCompany.error) {
+        console.error('Failed to send email to company:', toCompany.error);
+        return NextResponse.json({ error: 'Failed to send email. Please try again later.' }, { status: 500 });
+    }
+
     // 2. Send confirmation email to the sender
     const toSender = await resend.emails.send({
         from: fromEmail,
@@ -56,16 +63,16 @@ export async function POST(request: Request) {
         html: getConfirmationEmailTemplate(name),
     });
 
-
-    if (toCompany.error || toSender.error) {
-        console.error({ toCompanyError: toCompany.error, toSenderError: toSender.error });
-        throw new Error('Failed to send one or more emails.');
+    if (toSender.error) {
+        console.error('Failed to send confirmation email:', toSender.error);
+        // Don't fail the request if confirmation email fails
+        // The main email to company was sent successfully
     }
 
     return NextResponse.json({ message: 'Emails sent successfully!' }, { status: 200 });
 
   } catch (error) {
-    console.error(error);
-    return NextResponse.json({ error: 'Something went wrong.' }, { status: 500 });
+    console.error('Unexpected error in contact API:', error);
+    return NextResponse.json({ error: 'Something went wrong. Please try again later.' }, { status: 500 });
   }
 }

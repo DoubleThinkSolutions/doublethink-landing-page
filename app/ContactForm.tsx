@@ -26,8 +26,10 @@ export default function ContactForm() {
         body: JSON.stringify({ name, email, message }),
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        throw new Error('Something went wrong.');
+        throw new Error(data.error || 'Something went wrong.');
       }
 
       setFormState('success');
@@ -38,8 +40,8 @@ export default function ContactForm() {
       setMessage('');
     } catch (error) {
       setFormState('error');
-      setFormMessage('An error occurred. Please try again later.');
-      console.error(error);
+      setFormMessage(error instanceof Error ? error.message : 'An error occurred. Please try again later.');
+      console.error('Contact form error:', error);
     }
   };
 
