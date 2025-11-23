@@ -1,5 +1,7 @@
-import { Github, Linkedin, ArrowUpRight, Handshake } from 'lucide-react';
+import { Github, Linkedin, ArrowUpRight, Handshake, Building2, Camera } from 'lucide-react';
 import ContactForm from './ContactForm';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 // --- DATA: Updated with your company's information ---
 
@@ -72,23 +74,14 @@ const founders = [
 export default function HomePage() {
   return (
     <div className="min-h-screen">
+      <Header></Header>
       <div className="max-w-5xl mx-auto p-4 sm:p-6 lg:p-8 font-sans">
-        <header className="flex justify-between items-center py-6 border-b border-slate-200 dark:border-slate-700">
-          <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-slate-100">{companyInfo.name}</h1>
-          <div className="flex items-center space-x-4">
-            <a href={companyInfo.github} target="_blank" rel="noopener noreferrer" className="text-slate-600 hover:text-teal-600 dark:text-slate-400 dark:hover:text-teal-400 transition-colors">
-              <Github size={24} />
-            </a>
-            <a href={companyInfo.linkedin} target="_blank" rel="noopener noreferrer" className="text-slate-600 hover:text-teal-600 dark:text-slate-400 dark:hover:text-teal-400 transition-colors">
-              <Linkedin size={24} />
-            </a>
-          </div>
-        </header>
 
         <main className="mt-12 space-y-20">
 
           {/* Hero/About Section */}
           <section id="about" className="text-center max-w-3xl mx-auto">
+            
             <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-slate-100 mb-6 leading-tight">Accessibility as Alignment</h2>
             <p className="text-lg sm:text-xl text-slate-700 dark:text-slate-300 leading-relaxed">
               {companyInfo.brief}
@@ -130,7 +123,7 @@ export default function HomePage() {
             <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-slate-100 mb-8 text-center">The Team</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {founders.map((founder) => (
-                <div key={founder.name} className="group relative overflow-hidden bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300">
+                <div key={founder.name} className="group relative overflow-hidden bg-linear-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300">
                   <div className="p-8">
                     <div className="flex flex-col items-center text-center">
                       <div className="relative mb-6">
@@ -146,7 +139,7 @@ export default function HomePage() {
                       <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{founder.bio}</p>
                     </div>
                   </div>
-                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-500 to-cyan-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-teal-500 to-cyan-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
                 </div>
               ))}
             </div>
@@ -156,14 +149,12 @@ export default function HomePage() {
           <section id="contact" className="p-8 sm:p-10 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm">
             <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-slate-100 mb-4">Get in Touch</h2>
             <p className="text-slate-600 dark:text-slate-400 mb-8 text-lg">Interested in our vision or want to discuss a partnership? We'd love to hear from you.</p>
-            <ContactForm />
+            <ContactForm variant='general' source='home'/>
           </section>
         </main>
 
-        <footer className="text-center py-8 mt-20 border-t border-slate-200 dark:border-slate-700">
-          <p className="text-slate-500 dark:text-slate-400">&copy; {new Date().getFullYear()} {companyInfo.name}. All rights reserved.</p>
-        </footer>
       </div>
+      <Footer></Footer>
     </div>
   );
 }

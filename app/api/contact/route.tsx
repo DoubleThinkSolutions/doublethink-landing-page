@@ -1,25 +1,38 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-const getEmailTemplateToCompany = (name: string, email: string, message: string) => `
+// Helper to clean up the Form Type for the subject line
+const formatFormType = (type: string) => {
+  switch (type) {
+    case 'contributor': return 'Contributor Waitlist';
+    case 'enterprise': return 'Enterprise Inquiry';
+    default: return 'General Contact';
+  }
+};
+
+const getEmailTemplateToCompany = (name: string, email: string, message: string, formType: string, source: string, company?: string | null) => `
   <div>
-    <h1>New Contact Form Submission</h1>
-    <p>You have received a new message from your website contact form.</p>
+    <h1>New Submission: ${formatFormType(formType)}</h1>
+    <p>You have received a new submission from your website.</p>
     <ul>
       <li><strong>Name:</strong> ${name}</li>
       <li><strong>Email:</strong> ${email}</li>
+      <li><strong>Submission Type:</strong> ${formatFormType(formType)}</li>
+      <li><string>Source Page:</strong> ${source}</li>
+      ${company ? `<li><strong>Company:</strong> ${company}</li>` : ''}
     </ul>
-    <h2>Message:</h2>
-    <p>${message}</p>
+    <h2>Message / Details:</h2>
+    <p>${message ? message : '<em>No message provided.</em>'}</p>
   </div>
 `;
 
-const getConfirmationEmailTemplate = (name: string) => `
+const getConfirmationEmailTemplate = (name: string, formType: string) => `
   <div>
-    <h1>Thank you for contacting us, ${name}!</h1>
-    <p>We have received your message and will get back to you as soon as possible.</p>
+    <h1>Thanks for connecting, ${name}!</h1>
+    <p>We have received your ${formType === 'contributor' ? 'request to join the waitlist' : 'message'}.</p>
+    <p>We will review your information and get back to you shortly.</p>
     <p>Best regards,</p>
-    <p>Your Company Name</p>
+    <p>DoubleThink Solutions</p>
   </div>
 `;
 
@@ -31,23 +44,26 @@ const fromEmail = process.env.FROM_EMAIL;
 export async function POST(request: Request) {
   try {
     if (!companyEmail || !fromEmail) {
-        console.error('Missing environment variables:', { companyEmail: !!companyEmail, fromEmail: !!fromEmail });
-        return NextResponse.json({ error: 'Server configuration error. Please contact support.' }, { status: 500 });
+        console.error('Missing environment variables');
+        return NextResponse.json({ error: 'Server configuration error.' }, { status: 500 });
     }
 
-    const { name, email, message } = await request.json();
+    const { name, company, email, message, formType, source } = await request.json();
 
-    if (!name || !email || !message) {
-      console.error('Missing required fields:', { name: !!name, email: !!email, message: !!message });
-      return NextResponse.json({ error: 'Missing required fields: name, email, and message are required.' }, { status: 400 });
+    // VALIDATION: Message is now optional only if formType is 'contributor'
+    // But generally, we just check Name and Email.
+    if (!name || !email) {
+      return NextResponse.json({ error: 'Name and email are required.' }, { status: 400 });
     }
 
-    // 1. Send email to your company
+    // 1. Send email to your company (The "Manual List Building" email)
+    const subjectLine = `[${formatFormType(formType)}] New Submission from ${name}`;
+    
     const toCompany = await resend.emails.send({
       from: fromEmail,
       to: companyEmail,
-      subject: `New Message from ${name} on your Website`,
-      html: getEmailTemplateToCompany(name, email, message),
+      subject: subjectLine,
+      html: getEmailTemplateToCompany(name, email, message, formType, source, company),
     });
 
     if (toCompany.error) {
@@ -59,15 +75,9 @@ export async function POST(request: Request) {
     const toSender = await resend.emails.send({
         from: fromEmail,
         to: email,
-        subject: 'We\'ve Received Your Message!',
-        html: getConfirmationEmailTemplate(name),
+        subject: 'We received your submission',
+        html: getConfirmationEmailTemplate(name, formType),
     });
-
-    if (toSender.error) {
-        console.error('Failed to send confirmation email:', toSender.error);
-        // Don't fail the request if confirmation email fails
-        // The main email to company was sent successfully
-    }
 
     return NextResponse.json({ message: 'Emails sent successfully!' }, { status: 200 });
 
