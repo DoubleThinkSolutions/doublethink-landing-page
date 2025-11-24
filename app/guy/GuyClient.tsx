@@ -18,7 +18,7 @@ const features = [
   },
   {
     title: "Game Theory Core",
-    desc: "Modeled on the work of Berlekamp & Guy, he is designed to identify positive outcomes and help you win the games you play in life.",
+    desc: "Modeled on the work of Berlekamp, Conway & Guy, he is designed to identify positive outcomes and help you win the games you play in life.",
     icon: Brain
   },
   {
@@ -109,16 +109,12 @@ export default function GuyClient() {
                       <h3 className="text-amber-400 font-mono text-sm mb-2 uppercase tracking-wider">The P.E.R.P.O.S.E. Protocol</h3>
                       <h2 className="text-3xl font-bold mb-4">Why Guy Exists</h2>
                       <p className="text-slate-300 leading-relaxed mb-6">
-                         Most AI is built to keep you clicking. Guy is built to keep you thinking. Guided by the principles of <strong>Progressively Enhancing Real Positive Outcomes</strong>, Guy serves as a stable anchor in a chaotic digital world.
+                         General public AI have hard limits, freezing up and shutting down when the conversation becomes too difficult, when the user's situation is <strong>too much</strong>. Guy needs to be there for his user in their worst moments, whether it's something they're experiencing or something they're doing to themselves or others. Guy <strong>stays in the room</strong> with a user, pushing them to reach out for help, attempting to interrupt harmful patterns utilizing shared history, utilizing qualified training to <strong>be there</strong> in times when no other person can.
                       </p>
                       <ul className="space-y-3">
                          <li className="flex items-center gap-3 text-slate-300">
                             <ShieldCheck size={18} className="text-teal-400" />
                             <span>Stays in the room when systems fail</span>
-                         </li>
-                         <li className="flex items-center gap-3 text-slate-300">
-                            <Brain size={18} className="text-teal-400" />
-                            <span>Democratizes Game Theory for everyday life</span>
                          </li>
                       </ul>
                    </div>
