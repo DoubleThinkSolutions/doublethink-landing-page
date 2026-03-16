@@ -44,8 +44,20 @@ const cooperHewitt = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Sovereign System",
-  description: "Measured intelligence. Structural stability.",
+  title: {
+    template: "%s | Project Guy",
+    default: "Project Guy | Sovereign, On-Device AI",
+  },
+  description:
+    "Your perception is not a marketplace. Project Guy is a sovereign, on-device AI designed to protect what reaches your senses and restore your cognitive agency.",
+  keywords: ["Sovereign AI", "On-Device AI", "Cognitive Agency", "Digital Privacy", "Project Guy"],
+  openGraph: {
+    title: "Project Guy | Sovereign, On-Device AI",
+    description: "Your perception is not a marketplace. Project Guy is a sovereign, on-device AI designed to protect what reaches your senses and restore your cognitive agency.",
+    siteName: "Project Guy",
+    locale: "en_US",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
