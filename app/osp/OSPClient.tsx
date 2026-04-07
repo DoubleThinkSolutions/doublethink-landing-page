@@ -33,13 +33,13 @@ const OSPLogo = () => (
   <img 
     src="/OSP-Logo-Color.png" 
     alt="OSP"
-    className="h-64 w-auto mb-6 object-contain dark:brightness-150 dark:hidden" 
+    className="h-64 w-auto mb-6 object-contain dark:brightness-150 block dark:hidden" 
   />
 
   <img 
     src="/OSP-Logo-Inverted.png" 
     alt="OSP"
-    className="h-64 w-auto mb-6 object-contain dark:brightness-150 dark:block" 
+    className="h-64 w-auto mb-6 object-contain dark:brightness-150 hidden dark:block" 
   />
   </>
 );

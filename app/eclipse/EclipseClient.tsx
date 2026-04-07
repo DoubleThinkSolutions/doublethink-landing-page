@@ -33,13 +33,13 @@ const EclipseLogo = () => (
   <img 
     src="/Eclipse-Logo-Color.png" 
     alt="ECLIPSE" 
-    className="h-50 w-auto mb-6 object-contain dark:hidden" 
+    className="h-50 w-auto mb-6 object-contain block dark:hidden" 
   />
 
   <img 
     src="/Eclipse-Logo-White.png" 
     alt="ECLIPSE" 
-    className="h-50 w-auto mb-6 object-contain dark:block" 
+    className="h-50 w-auto mb-6 object-contain hidden dark:block" 
   />
   </>
 );

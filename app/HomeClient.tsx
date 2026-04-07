@@ -34,13 +34,13 @@ const GuyLogo = () => (
   <img 
     src="/Project-Guy-Logo-Color.png" 
     alt="PROJECT GUY" 
-    className="w-1xl h-1xl sm:w-l sm:h-l mb-6 object-contain dark:hidden" 
+    className="w-1xl h-1xl sm:w-l sm:h-l mb-6 object-contain block dark:hidden" 
   />
 
   <img 
     src="/Project-Guy-Logo-White.png" 
     alt="PROJECT GUY" 
-    className="w-1xl h-1xl sm:w-l sm:h-l mb-6 object-contain dark:block" 
+    className="w-1xl h-1xl sm:w-l sm:h-l mb-6 object-contain hidden dark:block" 
   />
   </>
 );
@@ -58,13 +58,13 @@ const EclipseLogo = () => (
   <img 
     src="/Eclipse-Logo-Color.png" 
     alt="ECLIPSE" 
-    className="h-64 w-auto mb-6 object-contain dark:hidden" 
+    className="h-64 w-auto mb-6 object-contain block dark:hidden" 
   />
 
   <img 
     src="/Eclipse-Logo-White.png" 
     alt="ECLIPSE" 
-    className="h-64 w-auto mb-6 object-contain dark:block" 
+    className="h-64 w-auto mb-6 object-contain hidden dark:block" 
   />
   </>
 );
@@ -74,13 +74,13 @@ const OSPLogo = () => (
   <img 
     src="/OSP-Logo-Color.png" 
     alt="OSP" 
-    className="h-40 w-auto mb-6 object-contain dark:hidden" 
+    className="h-40 w-auto mb-6 object-contain block dark:hidden" 
   />
 
   <img 
     src="/OSP-Logo-Inverted.png" 
     alt="OSP" 
-    className="h-40 w-auto mb-6 object-contain dark:block" 
+    className="h-40 w-auto mb-6 object-contain hidden dark:block" 
   />
   </>
 );
@@ -90,13 +90,13 @@ const LibraricLogo = () => (
   <img 
     src="/Libraric-Logo-Color.png" 
     alt="LIBRARIC" 
-    className="h-45 w-auto mb-6 object-contain dark:hidden" 
+    className="h-45 w-auto mb-6 object-contain block dark:hidden" 
   />
 
   <img 
     src="/Libraric-Logo-White.png" 
     alt="LIBRARIC" 
-    className="h-45 w-auto mb-6 object-contain dark:block" 
+    className="h-45 w-auto mb-6 object-contain hidden dark:block" 
   />
   </>
 );

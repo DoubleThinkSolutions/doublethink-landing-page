@@ -33,13 +33,13 @@ const LibraricLogo = () => (
   <img 
     src="/Libraric-Logo-Color.png" 
     alt="LIBRARIC" 
-    className="h-64 w-auto mb-6 object-contain dark:hidden" 
+    className="h-64 w-auto mb-6 object-contain block dark:hidden" 
   />
 
   <img 
     src="/Libraric-Logo-White.png" 
     alt="LIBRARIC" 
-    className="h-64 w-auto mb-6 object-contain dark:block" 
+    className="h-64 w-auto mb-6 object-contain hidden dark:block" 
   />
   </>
 );
