@@ -105,7 +105,7 @@ export default function ContactForm({
           onChange={(e) => setMessage(e.target.value)}
           required
           placeholder={placeholder}
-          className="block w-full px-4 py-3 bg-background border border-neural text-foreground placeholder-slate-deep focus:outline-none focus:border-teal-sovereign focus:ring-1 focus:ring-teal-sovereign transition-colors font-sans rounded-sm resize-none shadow-inner"
+          className="block w-full px-4 py-3 bg-background border border-neural text-foreground placeholder-neutral focus:outline-none focus:border-teal-sovereign focus:ring-1 focus:ring-teal-sovereign transition-colors font-sans rounded-sm resize-none shadow-inner"
         />
       </div>
 

@@ -30,11 +30,19 @@ const staggerContainer = {
 };
 
 const GuyLogo = () => (
+  <>
   <img 
     src="/Project-Guy-Logo-Color.png" 
     alt="PROJECT GUY" 
-    className="w-1xl h-1xl sm:w-l sm:h-l mb-6 object-contain" 
+    className="w-1xl h-1xl sm:w-l sm:h-l mb-6 object-contain dark:hidden" 
   />
+
+  <img 
+    src="/Project-Guy-Logo-White.png" 
+    alt="PROJECT GUY" 
+    className="w-1xl h-1xl sm:w-l sm:h-l mb-6 object-contain dark:block" 
+  />
+  </>
 );
 
 const InfinityLogo = () => (
@@ -46,27 +54,51 @@ const InfinityLogo = () => (
 );
 
 const EclipseLogo = () => (
+  <>
   <img 
     src="/Eclipse-Logo-Color.png" 
     alt="ECLIPSE" 
-    className="h-64 w-auto mb-6 object-contain" 
+    className="h-64 w-auto mb-6 object-contain dark:hidden" 
   />
+
+  <img 
+    src="/Eclipse-Logo-White.png" 
+    alt="ECLIPSE" 
+    className="h-64 w-auto mb-6 object-contain dark:block" 
+  />
+  </>
 );
 
 const OSPLogo = () => (
+  <>
   <img 
     src="/OSP-Logo-Color.png" 
     alt="OSP" 
-    className="h-40 w-auto mb-6 object-contain" 
+    className="h-40 w-auto mb-6 object-contain dark:hidden" 
   />
+
+  <img 
+    src="/OSP-Logo-Inverted.png" 
+    alt="OSP" 
+    className="h-40 w-auto mb-6 object-contain dark:block" 
+  />
+  </>
 );
 
 const LibraricLogo = () => (
+  <>
   <img 
     src="/Libraric-Logo-Color.png" 
     alt="LIBRARIC" 
-    className="h-45 w-auto mb-6 object-contain" 
+    className="h-45 w-auto mb-6 object-contain dark:hidden" 
   />
+
+  <img 
+    src="/Libraric-Logo-White.png" 
+    alt="LIBRARIC" 
+    className="h-45 w-auto mb-6 object-contain dark:block" 
+  />
+  </>
 );
 
 const coreValues = [
@@ -110,11 +142,11 @@ export default function HomeClient() {
           variants={fadeInUp}
           className="relative min-h-[90vh] flex flex-col items-center justify-center px-6 py-20 overflow-hidden bg-background border-b border-slate-deep"
         >
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f2933_1px,transparent_1px),linear-gradient(to_bottom,#1f2933_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20"></div>
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-slate-deep)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-slate-deep)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20"></div>
           
           <div className="relative z-10 flex flex-col items-center text-center max-w-4xl mx-auto">
             <GuyLogo />
-            <h2 className="font-ui text-xl sm:text-2xl tracking-widest text-eclipse uppercase mb-10">
+            <h2 className="font-ui text-xl sm:text-2xl tracking-widest text-foreground uppercase mb-10">
               Big Brother’s Worst Nightmare.
             </h2>
             <p className="font-sans text-lg sm:text-xl text-neural max-w-2xl leading-relaxed mb-10">
@@ -235,7 +267,7 @@ export default function HomeClient() {
           className="py-24 px-6 bg-background border-t border-slate-deep"
         >
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-display text-4xl text-eclipse mb-4 uppercase">Initiate Contact</h2>
+            <h2 className="font-display text-4xl text-foreground mb-4 uppercase">Initiate Contact</h2>
             <div className="bg-background p-8 border border-neural text-left shadow-xl shadow-eclipse/50">
               <ContactForm source='home' />
             </div>

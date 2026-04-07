@@ -29,11 +29,19 @@ const staggerContainer = {
 };
 
 const LibraricLogo = () => (
+  <>
   <img 
     src="/Libraric-Logo-Color.png" 
     alt="LIBRARIC" 
-    className="h-64 w-auto mb-6 object-contain" 
+    className="h-64 w-auto mb-6 object-contain dark:hidden" 
   />
+
+  <img 
+    src="/Libraric-Logo-White.png" 
+    alt="LIBRARIC" 
+    className="h-64 w-auto mb-6 object-contain dark:block" 
+  />
+  </>
 );
 
 const corePillars = [

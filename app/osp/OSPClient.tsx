@@ -1,6 +1,6 @@
 'use client';
 
-import { Camera, Shield, Database, Lock, FileJson, Map, Globe, ArrowRight } from 'lucide-react';
+import { Camera, Shield, Lock, Globe, ArrowRight } from 'lucide-react';
 import { motion, Variants } from 'framer-motion';
 
 import ContactForm from '../ContactForm';
@@ -29,11 +29,19 @@ const staggerContainer = {
 };
 
 const OSPLogo = () => (
+  <>
   <img 
     src="/OSP-Logo-Color.png" 
-    alt="OSP" 
-    className="h-64 w-auto mb-6 object-contain" 
+    alt="OSP"
+    className="h-64 w-auto mb-6 object-contain dark:brightness-150 dark:hidden" 
   />
+
+  <img 
+    src="/OSP-Logo-Inverted.png" 
+    alt="OSP"
+    className="h-64 w-auto mb-6 object-contain dark:brightness-150 dark:block" 
+  />
+  </>
 );
 
 const architectureSteps = [
@@ -85,7 +93,8 @@ export default function OSPClient() {
           variants={fadeInUp}
           className="relative min-h-[90vh] flex flex-col items-center justify-center px-6 py-20 overflow-hidden bg-background border-b border-slate-deep"
         >
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f2933_1px,transparent_1px),linear-gradient(to_bottom,#1f2933_1px,transparent_1px)] bg-size-[4rem_4rem] mask-[radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20"></div>
+          {/* Swapped hardcoded #1f2933 for adaptive var(--color-slate-deep) */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-slate-deep)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-slate-deep)_1px,transparent_1px)] bg-size-[4rem_4rem] mask-[radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20"></div>
           
           <div className="relative z-10 flex flex-col items-center text-center max-w-4xl mx-auto">
             <OSPLogo />
@@ -96,7 +105,7 @@ export default function OSPClient() {
         </motion.section>
         
 
-        {/* CORE ARCHITECTURE - REDESIGNED */}
+        {/* CORE ARCHITECTURE */}
         <motion.section 
           initial="hidden"
           whileInView="visible"

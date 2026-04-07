@@ -29,11 +29,19 @@ const staggerContainer = {
 };
 
 const EclipseLogo = () => (
+  <>
   <img 
     src="/Eclipse-Logo-Color.png" 
     alt="ECLIPSE" 
-    className="h-50 w-auto mb-6 object-contain" 
+    className="h-50 w-auto mb-6 object-contain dark:hidden" 
   />
+
+  <img 
+    src="/Eclipse-Logo-White.png" 
+    alt="ECLIPSE" 
+    className="h-50 w-auto mb-6 object-contain dark:block" 
+  />
+  </>
 );
 
 const steps = [
@@ -126,7 +134,7 @@ export default function EclipseClient() {
                   <div className="p-2 border border-slate-deep group-hover:border-teal-sovereign/50 transition-colors bg-background">
                     <step.icon size={20} className="text-teal-sovereign" strokeWidth={1} />
                   </div>
-                  <span className="font-mono text-[10px] tracking-[0.2em] text-slate-deep group-hover:text-amber-signal">
+                  <span className="font-mono text-[10px] tracking-[0.2em] text-neural group-hover:text-amber-signal">
                     PHASE_0{idx + 1}
                   </span>
                 </div>
@@ -148,7 +156,7 @@ export default function EclipseClient() {
                 </div>
 
                 {/* 4. Bottom Metric (Optional - Adds to the architecture feel) */}
-                <div className="mt-8 font-mono text-[9px] uppercase tracking-widest text-slate-deep/50 overflow-hidden whitespace-nowrap">
+                <div className="mt-8 font-mono text-[9px] uppercase tracking-widest text-neural/50 overflow-hidden whitespace-nowrap">
                   LATENCY_CHECK: OK // STACK: LOCAL_OS
                 </div>
               </motion.div>
