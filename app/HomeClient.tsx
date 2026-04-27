@@ -86,19 +86,9 @@ const OSPLogo = () => (
 );
 
 const LibraricLogo = () => (
-  <>
-  <img 
-    src="/Libraric-Logo-Color.png" 
-    alt="LIBRARIC" 
-    className="h-45 w-auto mb-6 object-contain block dark:hidden" 
-  />
-
-  <img 
-    src="/Libraric-Logo-White.png" 
-    alt="LIBRARIC" 
-    className="h-45 w-auto mb-6 object-contain hidden dark:block" 
-  />
-  </>
+  <h1 className="font-display text-2xl md:text-4xl uppercase tracking-[0.2em] text-foreground mb-8">
+      Serapeum
+  </h1>
 );
 
 const coreValues = [
@@ -236,7 +226,7 @@ export default function HomeClient() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
                     {[
                       { href: "/eclipse", logo: <EclipseLogo />, text: "Protects perception. Software that lets you control what reaches your eyes and ears before it affects you." },
-                      { href: "/libraric", logo: <LibraricLogo />, text: "Preserves meaning. A private, on-device memory system organizing experiences into meaningful structure." },
+                      { href: "/serapeum", logo: <LibraricLogo />, text: "Preserves meaning. A private, on-device memory system organizing experiences into meaningful structure." },
                       { href: "/osp", logo: <OSPLogo />, text: "Anchors reality. Cryptographically verifies real-world events creating trusted public evidence." }
                     ].map((item, i) => (
                       <motion.div key={i} variants={fadeInUp}>

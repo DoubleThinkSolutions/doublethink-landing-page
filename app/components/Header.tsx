@@ -26,8 +26,8 @@ export default function Header() {
               <a href="/eclipse" className="font-ui text-sm uppercase tracking-widest text-neural hover:text-teal-sovereign transition-colors">
                 Eclipse
               </a>
-              <a href="/libraric" className="font-ui text-sm uppercase tracking-widest text-neural hover:text-teal-sovereign transition-colors">
-                Libraric
+              <a href="/serapeum" className="font-ui text-sm uppercase tracking-widest text-neural hover:text-teal-sovereign transition-colors">
+                Serapeum
               </a>
               <a href="/osp" className="font-ui text-sm uppercase tracking-widest text-neural hover:text-teal-sovereign transition-colors">
                 OSP

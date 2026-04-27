@@ -52,7 +52,7 @@ const corePillars = [
   },
   {
     title: "Enduring Context",
-    desc: "Technology usually forces you to start over with every new session. The Libraric Layer ensures your AI grows with you. It remembers what matters, functioning as a true cognitive partner.",
+    desc: "Technology usually forces you to start over with every new session. Serapeum ensures your AI grows with you. It remembers what matters, functioning as a true cognitive partner.",
     icon: BookOpen
   },
   {
@@ -69,7 +69,7 @@ const technicalSpecs = [
   },
   {
     title: "10,000:1 Dynamic Retrieval",
-    description: "Traditional AI loads context statically. The Libraric Layer navigates a 20 to 30 million token corpus using only a fraction of the computational context (less than 2,000 tokens for targeted extraction). It is an unprecedented dynamic retrieval ratio."
+    description: "Traditional AI loads context statically. Serapeum navigates a 20 to 30 million token corpus using only a fraction of the computational context (less than 2,000 tokens for targeted extraction). It is an unprecedented dynamic retrieval ratio."
   },
   {
     title: "Needle-In-A-Haystack Precision",
@@ -77,7 +77,7 @@ const technicalSpecs = [
   }
 ];
 
-export default function LibraricClient() {
+export default function SerapeumClient() {
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-teal-sovereign">
       <Header />
@@ -93,9 +93,11 @@ export default function LibraricClient() {
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f2933_1px,transparent_1px),linear-gradient(to_bottom,#1f2933_1px,transparent_1px)] bg-size-[4rem_4rem] mask-[radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20"></div>
             
             <div className="relative z-10 flex flex-col items-center text-center max-w-4xl mx-auto">
-            <LibraricLogo />
+            <h1 className="font-display text-5xl md:text-7xl uppercase tracking-[0.2em] text-foreground mb-8">
+                Serapeum
+            </h1>
             <p className="font-sans text-lg sm:text-xl text-neural max-w-2xl leading-relaxed mb-10">
-                The Libraric Layer is a private, on-device memory system that organizes your experiences into meaningful structure so your AI can grow with you instead of starting over every time.
+                A private, on-device memory system that organizes your experiences into meaningful structure so your AI can grow with you instead of starting over every time.
             </p>
             </div>
         </motion.section>
@@ -138,7 +140,7 @@ export default function LibraricClient() {
                      Navigating a Lifetime <br/><span className="text-neural">of Context.</span>
                    </h2>
                    <p className="font-sans text-lg text-neural leading-relaxed mb-8">
-                     To truly function as a cognitive prosthetic, a system must be able to hold years of human context without collapsing under its own weight. The Libraric Layer is not a productivity hack; it is a meticulously engineered personal archive capable of searching tens of millions of tokens in seconds.
+                     To truly function as a cognitive prosthetic, a system must be able to hold years of human context without collapsing under its own weight. Serapeum is not a productivity hack; it is a meticulously engineered personal archive capable of searching tens of millions of tokens in seconds.
                    </p>
                    
                    <blockquote className="border-l-2 border-teal-sovereign pl-6 py-2 my-10 font-sans text-foreground/80 italic text-lg">
@@ -146,7 +148,7 @@ export default function LibraricClient() {
                    </blockquote>
 
                    <p className="font-sans text-base text-neural leading-relaxed">
-                     This is achieved through targeted search. Rather than attempting to load an entire lifetime into a static window, the Libraric Layer retrieves only the highly relevant snippets needed for the moment. The result is a profoundly capable system that remains light, agile, and entirely on-device.
+                     This is achieved through targeted search. Rather than attempting to load an entire lifetime into a static window, Serapeum retrieves only the highly relevant snippets needed for the moment. The result is a profoundly capable system that remains light, agile, and entirely on-device.
                    </p>
                 </div>
 
@@ -197,10 +199,10 @@ export default function LibraricClient() {
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-display text-4xl text-foreground mb-4 uppercase tracking-wide">Initiate Contact</h2>
             <p className="font-sans text-neural mb-12">
-              Engage with Project Guy regarding the Libraric memory architecture.
+              Engage with Project Guy regarding the Serapeum memory architecture.
             </p>
             <div className="bg-card p-8 border border-slate-deep text-left shadow-2xl shadow-black/50">
-              <ContactForm source='libraric' />
+              <ContactForm source='serapeum' />
             </div>
           </div>
         </motion.section>

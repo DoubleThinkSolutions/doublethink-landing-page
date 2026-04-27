@@ -23,7 +23,7 @@ export default function Footer() {
             <h4 className="font-ui text-xs text-amber-signal uppercase tracking-widest mb-6">Ecosystem</h4>
             <ul className="space-y-3 font-sans text-sm">
               <li><a href="/eclipse" className="text-neural hover:text-teal-sovereign transition-colors">Eclipse</a></li>
-              <li><a href="/libraric" className="text-neural hover:text-teal-sovereign transition-colors">Libraric</a></li>
+              <li><a href="/serapeum" className="text-neural hover:text-teal-sovereign transition-colors">Serapeum</a></li>
               <li><a href="/osp" className="text-neural hover:text-teal-sovereign transition-colors">OSP</a></li>
             </ul>
           </div>
@@ -40,9 +40,6 @@ export default function Footer() {
           <div>
             <h4 className="font-ui text-xs text-amber-signal uppercase tracking-widest mb-6">Connect</h4>
             <div className="flex space-x-5">
-              <a href="https://github.com/DoubleThinkSolutions" target="_blank" rel="noopener noreferrer" className="text-neural hover:text-teal-sovereign transition-colors">
-                <Github size={20} />
-              </a>
               <a href="https://linkedin.com/company/doublethink-solutions" target="_blank" rel="noopener noreferrer" className="text-neural hover:text-teal-sovereign transition-colors">
                 <Linkedin size={20} />
               </a>
