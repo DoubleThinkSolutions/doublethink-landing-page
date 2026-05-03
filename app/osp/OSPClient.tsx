@@ -48,19 +48,19 @@ const architectureSteps = [
   {
     title: "Capture",
     number: "01",
-    desc: "We start with the device you already own. Your experiences and memories are gathered securely, creating a private library without silently sending your data to the cloud.",
+    desc: "We measure and sign over fifty of your device's metrics into your video the moment you start recording. Those readings show what it actually cost your device to capture the scene.",
     icon: Camera
   },
   {
     title: "Protect",
     number: "02",
-    desc: "Acting as a cognitive immune system, the tool can gently soften or filter harmful content, protecting your attention before you are overwhelmed by the noise.",
+    desc: "Your device-signed footage is posted to the public ledger at the moment of upload. Any edits made afterward have to compete with your original recording as the verified first post, and they lose.",
     icon: Shield
   },
   {
     title: "Empower",
     number: "03",
-    desc: "You always remain in charge of the rules. Nothing is secretly deleted or censored. We provide transparent tools and context, never overriding your personal judgment.",
+    desc: "You created the evidence at the moment it happened, on the device that was there. Recording, signing, and uploading costs less battery, compute, heat, and time than running AI to fake it on that same device. The measurements that prove it are signed into your video, and that proof can't be brushed off.",
     icon: Lock
   }
 ];
