@@ -18,7 +18,7 @@ export const SITE_FLOW: Record<string, FlowStep> = {
   },
   intro: {
     id: 'intro',
-    text: "Welcome to Doublethink, Solutions. \nI am here to guide you. What would you like to explore?",
+    text: "Welcome to Doublethink Solutions. \nI am here to guide you. What would you like to explore?",
     options: [
       { label: "Tell me about the Open Source Panopticon.", target: "osp_intro" },
       { label: "I want to contact the team.", target: "contact" }
