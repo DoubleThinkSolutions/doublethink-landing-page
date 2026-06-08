@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
 :root {
   /* Brand Palette Hex Codes */
@@ -17,30 +19,13 @@
   --font-body: "Manrope", sans-serif;            
 
   /* Default Theme (Light/Library mode) */
-  --background: var(--library-cream);
-  --foreground: var(--eclipse-black);
   --card-bg: var(--library-cream);
   --card-border: var(--deep-slate);
-  
+
   /* Adaptive Tokens (NEW) */
   --theme-slate-deep: var(--deep-slate);
   --theme-neural: var(--neural-blue);
   --theme-muted: var(--neural-blue);
-}
-
-/* Dark Mode (Dark/Monolith mode) */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: var(--eclipse-black);
-    --foreground: var(--library-cream);
-    --card-bg: var(--deep-slate);
-    --card-border: var(--neural-blue);
-    
-    /* Fix Visibility: Switch dark-text/borders to lighter, legible shades */
-    --theme-slate-deep: var(--neural-blue);
-    --theme-neural: #8c9fb3; /* Legible soft blue-gray on black */
-    --theme-muted: #8c9fb3;
-  }
 }
 
 @theme inline {
@@ -49,7 +34,7 @@
   --color-foreground: var(--foreground);
   --color-card: var(--card-bg);
   --color-border: var(--card-border);
-  
+
   /* Constant colors */
   --color-eclipse: var(--eclipse-black);
   --color-teal-sovereign: var(--sovereign-teal);

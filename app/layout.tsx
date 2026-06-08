@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { League_Spartan, Manrope } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import { AudioProvider } from "./context/AudioContext";
 
 /**
  * THE MONOLITH: League Spartan (Google Fonts)
@@ -45,16 +46,16 @@ const cooperHewitt = localFont({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | Project Guy",
-    default: "Project Guy | Sovereign, On-Device AI",
+    template: "%s | Doublethink Solutions",
+    default: "Doublethink Solutions",
   },
   description:
-    "Your perception is not a marketplace. Project Guy is a sovereign, on-device AI designed to protect what reaches your senses and restore your cognitive agency.",
-  keywords: ["Sovereign AI", "On-Device AI", "Cognitive Agency", "Digital Privacy", "Project Guy"],
+    "A tech company building the Open Source Panopticon to prevent misinformation and safeguard trust.",
+  keywords: ["Doublethink Solutions", "Open Source Panopticon", "Cognitive Agency", "Digital Privacy", "Project Guy"],
   openGraph: {
-    title: "Project Guy | Sovereign, On-Device AI",
-    description: "Your perception is not a marketplace. Project Guy is a sovereign, on-device AI designed to protect what reaches your senses and restore your cognitive agency.",
-    siteName: "Project Guy",
+    title: "Doublethink Solutions",
+    description: "A tech company building the Open Source Panopticon to prevent misinformation and safeguard trust.",
+    siteName: "Doublethink Solutions",
     locale: "en_US",
     type: "website",
   },
@@ -75,7 +76,9 @@ export default function RootLayout({
           antialiased
         `}
       >
-        {children}
+        <AudioProvider>
+          {children}
+        </AudioProvider>
       </body>
     </html>
   );
