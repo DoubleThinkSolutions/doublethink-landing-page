@@ -17,6 +17,8 @@ interface AudioContextType {
 
 const AudioContext = createContext<AudioContextType | undefined>(undefined);
 
+const MIN_SUBTITLE_DURATION = 2000;
+
 const getAudioSrc = (src: string | SoundAsset): string => {
   if (typeof src === 'string') return src;
   return src?.dataUri || '';
@@ -27,21 +29,20 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [isSubtitlesEnabled, setIsSubtitlesEnabled] = useState(true);
   const [activeSounds, setActiveSounds] = useState<string[]>([]);
 
-  // Web Audio API References
   const audioCtxRef = useRef<AudioContext | null>(null);
   const gainNodeRef = useRef<GainNode | null>(null);
   const bufferCacheRef = useRef<Record<string, AudioBuffer>>({});
 
-  // Active playing source nodes
   const ambientSourceRef = useRef<AudioBufferSourceNode | null>(null);
   const currentAmbientId = useRef<string | null>(null);
   const triggeredSourcesRef = useRef<Record<string, AudioBufferSourceNode[]>>({});
 
-  // 1. Initialize AudioContext and Pre-load/Decode Buffers
+  const soundStartTimesRef = useRef<Record<string, number>>({});
+  const activeTimeoutsRef = useRef<Record<string, NodeJS.Timeout>>({});
+
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    // Create the global AudioContext and master GainNode
     const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
     const ctx = new AudioContextClass();
     const masterGain = ctx.createGain();
@@ -50,10 +51,8 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     audioCtxRef.current = ctx;
     gainNodeRef.current = masterGain;
 
-    // Set initial mute state
     masterGain.gain.value = isAudioEnabled ? 1.0 : 0.0;
 
-    // Pre-decode all audio config assets into memory
     Object.entries(AUDIO_CONFIG).forEach(async ([id, track]) => {
       try {
         const src = getAudioSrc(track.src);
@@ -62,7 +61,6 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         const response = await fetch(src);
         const arrayBuffer = await response.arrayBuffer();
         
-        // Decode the binary audio data into an AudioBuffer
         ctx.decodeAudioData(arrayBuffer, (buffer) => {
           bufferCacheRef.current[id] = buffer;
         }, (err) => {
@@ -77,17 +75,16 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       if (ctx.state !== 'closed') {
         ctx.close();
       }
+      Object.values(activeTimeoutsRef.current).forEach(clearTimeout);
     };
   }, []);
 
-  // 2. Sync master volume node when isAudioEnabled state changes
   useEffect(() => {
     if (gainNodeRef.current) {
       gainNodeRef.current.gain.value = isAudioEnabled ? 1.0 : 0.0;
     }
   }, [isAudioEnabled]);
 
-  // Ensure AudioContext is resumed (Browsers require user interaction before running audio)
   const resumeContext = async () => {
     if (audioCtxRef.current && audioCtxRef.current.state === 'suspended') {
       await audioCtxRef.current.resume();
@@ -102,7 +99,6 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
     if (!ctx || !masterGain || !buffer) return;
 
-    // If a different ambient sound is playing, stop it
     if (ambientSourceRef.current && currentAmbientId.current !== id) {
       ambientSourceRef.current.stop();
       setActiveSounds((prev) => prev.filter((sid) => sid !== currentAmbientId.current));
@@ -112,7 +108,6 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
     currentAmbientId.current = id;
 
-    // Create a local track gain node for track-specific volume
     const trackGain = ctx.createGain();
     trackGain.gain.value = AUDIO_CONFIG[id]?.volume ?? 1.0;
 
@@ -120,7 +115,6 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     source.buffer = buffer;
     source.loop = true;
 
-    // Connect: Source -> Track Volume -> Master Volume (Speakers)
     source.connect(trackGain);
     trackGain.connect(masterGain);
     
@@ -153,7 +147,11 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       return;
     }
 
-    // Stop any existing overlapping instances of this specific sound ID if desired
+    if (activeTimeoutsRef.current[id]) {
+      clearTimeout(activeTimeoutsRef.current[id]);
+      delete activeTimeoutsRef.current[id];
+    }
+
     if (triggeredSourcesRef.current[id]) {
       triggeredSourcesRef.current[id].forEach(src => {
         try { src.stop(); } catch(e) {}
@@ -170,12 +168,26 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     source.connect(trackGain);
     trackGain.connect(masterGain);
 
-    // Track active sounds for subtitles
+    soundStartTimesRef.current[id] = Date.now();
+
     setActiveSounds((prev) => (prev.includes(id) ? prev : [...prev, id]));
 
     source.onended = () => {
-      setActiveSounds((prev) => prev.filter((sid) => sid !== id));
-      // Clean up the ref array
+      const elapsed = Date.now() - (soundStartTimesRef.current[id] || Date.now());
+      const remainingTime = MIN_SUBTITLE_DURATION - elapsed;
+
+      const removeSound = () => {
+        setActiveSounds((prev) => prev.filter((sid) => sid !== id));
+        delete soundStartTimesRef.current[id];
+        delete activeTimeoutsRef.current[id];
+      };
+
+      if (remainingTime > 0) {
+        activeTimeoutsRef.current[id] = setTimeout(removeSound, remainingTime);
+      } else {
+        removeSound();
+      }
+
       if (triggeredSourcesRef.current[id]) {
         triggeredSourcesRef.current[id] = triggeredSourcesRef.current[id].filter(s => s !== source);
       }
@@ -189,7 +201,6 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     triggeredSourcesRef.current[id].push(source);
   };
 
-  // 3. Compute Subtitles (Unchanged)
   const currentSubtitle = (() => {
     if (!isSubtitlesEnabled || activeSounds.length === 0) return null;
 
@@ -197,7 +208,7 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     activeSounds.forEach((id) => {
       const track = AUDIO_CONFIG[id];
       if (track) {
-        if (!highestTrack || track.priority > highestTrack.priority) {
+        if (!highestTrack || track.priority >= highestTrack.priority) {
           highestTrack = track;
         }
       }

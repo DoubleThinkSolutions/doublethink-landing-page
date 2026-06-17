@@ -23,7 +23,7 @@ export const AUDIO_CONFIG: Record<string, AudioTrack> = {
     src: clickSoftSound,
     priority: 10,
     subtitle: '[click]',
-    volume: 1,
+    volume: 0.3,
   },
     tick: {
     id: AudioId.TICK,

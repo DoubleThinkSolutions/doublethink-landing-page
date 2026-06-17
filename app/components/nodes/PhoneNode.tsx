@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 import { AnimationStep } from "./AnimationStep";
 import { useAudio } from "@/app/context/AudioContext";
@@ -11,6 +12,21 @@ export interface PhoneNodeProps {
 
 export default function PhoneNode({ animStep, onCapture }: PhoneNodeProps) {
   const { playTriggered } = useAudio();
+  const [showHint, setShowHint] = useState(false);
+
+  useEffect(() => {
+    if (animStep !== "idle") {
+      setShowHint(false);
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setShowHint(true);
+    }, 4000);
+
+    return () => clearTimeout(timer);
+  }, [animStep]);
+  
   return (
     <div className="absolute left-[20%] top-[75%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-2 select-none z-20">
       <div className="w-20 h-36 bg-white border-2 border-gray-200 rounded-2xl p-1.5 relative shadow-xl flex flex-col justify-between">
@@ -51,6 +67,21 @@ export default function PhoneNode({ animStep, onCapture }: PhoneNodeProps) {
             )}
           </AnimatePresence>
         </div>
+      </div>
+      <div className="h-4 flex items-center justify-center relative w-full">
+        <AnimatePresence>
+          {showHint && (
+            <motion.span
+              initial={{ opacity: 0, y: -4 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -4 }}
+              transition={{ duration: 0.2 }}
+              className="text-xs font-semibold text-primary tracking-wide text-center absolute whitespace-nowrap"
+            >
+              Click me!
+            </motion.span>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );
