@@ -5,7 +5,7 @@
 :root {
   /* Brand Palette Hex Codes */
   --eclipse-black: #0f1115;
-  --deep-slate: #1f2933;
+  --deep-slate: #1f2933; /* OSP dark blue*/
   --neural-blue: #273644;
   --sovereign-teal: #1e5f6e;
   --library-cream: #f4f1ea;
@@ -13,44 +13,189 @@
   --ethical-red: #7a1e1e;
   --boundary-violet: #3e2f5b;
 
-  /* Font Assignments */
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-600: #4b5563;
+
+  --background: var(--library-cream);
+  --foreground: var(--eclipse-black);
+  --foreground-soft: var(--gray-400);
+  --foreground-secondary: var(--gray-600);
+  --foreground-secondary-hover: var(--eclipse-black);
+  
+  --card-bg: var(--gray-50);
+  --card-border: var(--gray-200);
+
+  --primary: var(--gray-50);
+  --primary-hover: var(--gray-100);
+  --primary-foreground: var(--gray-600);
+  --primary-foreground-hover: var(--eclipse-black);
+  --primary-border: var(--gray-300);
+  --primary-foreground-disabled: var(--gray-400);
+
+  --secondary: var(--gray-100);
+  --secondary-hover: var(--gray-200);
+  --secondary-foreground: var(--gray-600);
+  --secondary-foreground-hover: var(--eclipse-black);
+  --secondary-border: var(--gray-200);
+
+  --inverted: var(--eclipse-black);
+  --inverted-foreground: var(--gray-50);
+
   --font-heading: "League Spartan", sans-serif;   
   --font-interface: "Cooper Hewitt", sans-serif; 
   --font-body: "Manrope", sans-serif;            
-
-  /* Default Theme (Light/Library mode) */
-  --card-bg: var(--library-cream);
-  --card-border: var(--deep-slate);
-
-  /* Adaptive Tokens (NEW) */
-  --theme-slate-deep: var(--deep-slate);
-  --theme-neural: var(--neural-blue);
-  --theme-muted: var(--neural-blue);
 }
 
 @theme inline {
-  /* Standard structural colors */
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--background); /* Page background */
+  --color-foreground: var(--foreground); /* Page text */
+  --color-foreground-soft: var(--foreground-soft);
+  --color-foreground-secondary: var(--foreground-secondary);
+  --color-foreground-secondary-hover: var(--foreground-secondary-hover);
+
   --color-card: var(--card-bg);
   --color-border: var(--card-border);
+  
+  --color-primary: var(--primary); /* Element (e.g., buttons, inputs) background */
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground); /* Element text */
+  --color-primary-foreground-hover: var(--primary-foreground-hover);
+  --color-primary-border: var(--primary-border);
+  --color-primary-foreground-disabled: var(--primary-foreground-disabled);
 
-  /* Constant colors */
-  --color-eclipse: var(--eclipse-black);
-  --color-teal-sovereign: var(--sovereign-teal);
-  --color-cream-library: var(--library-cream);
-  --color-amber-signal: var(--signal-amber);
-  --color-red-ethical: var(--ethical-red);
-  --color-violet-boundary: var(--boundary-violet);
+  --color-secondary: var(--secondary); /* Element (e.g., buttons, inputs) background */
+  --color-secondary-hover: var(--secondary-hover);
+  --color-secondary-foreground: var(--secondary-foreground); /* Element text */
+  --color-secondary-foreground-hover: var(--secondary-foreground-hover);
+  --color-secondary-border: var(--secondary-border);
 
-  /* Swapped to use the new semantic/adaptive tokens */
-  --color-slate-deep: var(--theme-slate-deep);
-  --color-neural: var(--theme-neural);
+  --color-inverted: var(--inverted); /* Contrast elements (e.g., subtitles) background */
+  --color-inverted-foreground: var(--inverted-foreground);
 
-  /* Font Families */
-  --font-sans: var(--font-body);      
+  --font-sans: var(--font-body);
   --font-display: var(--font-heading); 
   --font-ui: var(--font-interface);   
+}
+
+.dark {
+  --background: var(--eclipse-black);
+  --foreground: var(--library-cream);
+  --foreground-soft: var(--gray-600);
+  --foreground-secondary: var(--gray-300);
+  --foreground-secondary-hover: var(--gray-50);
+  
+  --card-bg: var(--deep-slate);
+  --card-border: var(--neural-blue);
+
+  --primary: var(--deep-slate);
+  --primary-hover: var(--neural-blue);
+  --primary-foreground: var(--gray-300);
+  --primary-foreground-hover: var(--gray-50);
+  --primary-border: var(--neural-blue);
+  --primary-foreground-disabled: var(--gray-600);
+
+  --secondary: var(--neural-blue);
+  --secondary-hover: var(--sovereign-teal);
+  --secondary-foreground: var(--gray-200);
+  --secondary-foreground-hover: var(--gray-50);
+  --secondary-border: var(--neural-blue);
+
+  --inverted: var(--library-cream);
+  --inverted-foreground: var(--eclipse-black);
+}
+
+/* LOW CONTRAST & DYSLEXIA SUPPORT
+   Uses a soft warm cream-gray background, increased padding variables 
+   if needed, and high-readability muted tints to prevent visual stress.*/
+.low-contrast {
+  --background: #eae7df;
+  --foreground: #3a3d40;
+  --foreground-soft: #8a8d90;
+  --foreground-secondary: #56595c;
+  --foreground-secondary-hover: #1a1c1e;
+  
+  --card-bg: #f2efe7;
+  --card-border: #d5d1c7;
+
+  --primary: #f2efe7;
+  --primary-hover: #e3ded2;
+  --primary-foreground: #56595c;
+  --primary-foreground-hover: #1a1c1e;
+  --primary-border: #c8c3b5;
+  --primary-foreground-disabled: #a6a39a;
+
+  --secondary: #e3ded2;
+  --secondary-hover: #d5d1c7;
+  --secondary-foreground: #56595c;
+  --secondary-foreground-hover: #1a1c1e;
+  --secondary-border: #c8c3b5;
+
+  --inverted: #3a3d40;
+  --inverted-foreground: #f2efe7;
+}
+
+/* COLORBLIND: BLUE-YELLOW (Tritanopia Safe)
+   Eliminates dependencies on muddy greens/reds; emphasizes clear slate 
+   blues, sharp yellows, and high tonal contrast profiles. */
+.blue-yellow {
+  --background: #0f172a; /* Deep slate base */
+  --foreground: #fef08a; /* Vibrant light yellow text */
+  --foreground-soft: #64748b;
+  --foreground-secondary: #94a3b8;
+  --foreground-secondary-hover: #fef08a;
+  
+  --card-bg: #1e293b;
+  --card-border: #334155;
+
+  --primary: #1e293b;
+  --primary-hover: #334155;
+  --primary-foreground: #e2e8f0;
+  --primary-foreground-hover: #fef08a;
+  --primary-border: #475569;
+  --primary-foreground-disabled: #64748b;
+
+  --secondary: #334155;
+  --secondary-hover: #0284c7;
+  --secondary-foreground: #fef08a;
+  --secondary-foreground-hover: #ffffff;
+  --secondary-border: #475569;
+
+  --inverted: #fef08a;
+  --inverted-foreground: #0f172a;
+}
+
+/* COLORBLIND: GREEN-MAGENTA (Deuteranopia/Protanopia Safe)
+   Swaps traditional red/green traps for high-contrast combinations of 
+   rich dark purples, soft mints, and deep magentas. */
+.green-magenta {
+  --background: #1c0f24; /* Deep Plum Black */
+  --foreground: #adfa1d; /* Accessible Mint Neon */
+  --foreground-soft: #705480;
+  --foreground-secondary: #c0a0d0;
+  --foreground-secondary-hover: #adfa1d;
+  
+  --card-bg: #2d193a;
+  --card-border: #4c2f5e;
+
+  --primary: #2d193a;
+  --primary-hover: #4c2f5e;
+  --primary-foreground: #f3e8ff;
+  --primary-foreground-hover: #adfa1d;
+  --primary-border: #5c3b75;
+  --primary-foreground-disabled: #705480;
+
+  --secondary: #4c2f5e;
+  --secondary-hover: #e02424;
+  --secondary-foreground: #f3e8ff;
+  --secondary-foreground-hover: #adfa1d;
+  --secondary-border: #5c3b75;
+
+  --inverted: #adfa1d;
+  --inverted-foreground: #1c0f24;
 }
 
 body {

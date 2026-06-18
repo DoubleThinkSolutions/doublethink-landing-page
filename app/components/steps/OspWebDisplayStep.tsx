@@ -12,13 +12,13 @@ export default function OspWebDisplayStep({ onAnimationComplete }: StepComponent
         <Typewriter
           text="Explore Verified Media via the OSP Public Platform." 
           delay={0.2} 
-          className="text-2xl md:text-3xl font-extrabold tracking-tight text-gray-900"
+          className="text-2xl md:text-3xl font-extrabold tracking-tight text-foreground"
         />
 
         <Typewriter
           text="Watch as media gets uploading live or filter for a specific time down to the minute. View the sensor data and watch it change frame by frame." 
           delay={2.8} 
-          className="text-sm md:text-base text-gray-600 leading-relaxed"
+          className="text-sm md:text-base text-foreground-secondary leading-relaxed"
           onComplete={onAnimationComplete}
           speedScale={0.1}
         />

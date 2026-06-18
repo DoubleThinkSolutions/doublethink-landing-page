@@ -29,8 +29,8 @@ export default function StepOptions({ options, showOptions, onOptionClick, isOve
   return (
     <div 
       className={`
-        w-full flex flex-col gap-4
-        ${isOverlapping ? "z-20" : "h-[30vh] justify-start pointer-events-none"}
+        w-full flex flex-col gap-4 pointer-events-none
+        ${isOverlapping ? "z-20" : "h-[30vh] justify-start"}
         ${positionClasses[side]}
       `}
     >
@@ -43,8 +43,8 @@ export default function StepOptions({ options, showOptions, onOptionClick, isOve
             transition={{ delay: Math.min(index, 0) * 0.1, duration: 0.3 }}
             onClick={() => onOptionClick(option.target)}
             className={`
-            px-8 py-4 rounded-full border border-gray-300 
-            bg-white/70 backdrop-blur-md hover:bg-gray-100 
+            px-8 py-4 rounded-full border border-primary-border 
+            bg-primary/70 backdrop-blur-md hover:bg-primary-hover 
             text-lg sm:text-xl font-medium transition-colors shadow-lg pointer-events-auto
             ${index > 0 ? "hidden sm:block" : ""} 
             `}

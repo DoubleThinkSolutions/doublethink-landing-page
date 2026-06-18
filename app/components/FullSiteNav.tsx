@@ -97,18 +97,18 @@ export function FullSiteNav({ isOpen, onClose, onNavigate }: FullSiteNavProps) {
       initial="hidden"
       animate="visible"
       exit="exit"
-      className="absolute inset-0 z-40 bg-white/40 backdrop-blur-xl flex flex-col justify-between p-8 sm:p-16 overflow-y-auto"
+      className="absolute inset-0 z-40 bg-background/40 backdrop-blur-xl flex flex-col justify-between p-8 sm:p-16 overflow-y-auto"
     >
       {/* Top Banner Row */}
-      <div className="w-full flex justify-between items-center border-b border-gray-200/50 pb-6">
+      <div className="w-full flex justify-between items-center border-b border-primary-border/50 pb-6">
         <Typewriter
           text="There's so much more to see..."
           delay={0.1}
-          className="font-sans text-sm tracking-widest text-gray-400 uppercase"
+          className="font-sans text-sm tracking-widest text-foreground-soft uppercase"
         />
         <button
           onClick={onClose}
-          className="text-xs font-sans uppercase tracking-wider text-gray-500 hover:text-black px-3 py-1 rounded border border-gray-300 hover:border-black transition-colors"
+          className="text-xs font-sans uppercase tracking-wider text-primary-foreground hover:text-primary-foreground-hover px-3 py-1 rounded border border-primary-border hover:border-primary-foreground-hover transition-colors"
         >
           Close [Esc]
         </button>
@@ -118,7 +118,7 @@ export function FullSiteNav({ isOpen, onClose, onNavigate }: FullSiteNavProps) {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12 my-auto py-12 max-w-5xl w-full mx-auto">
         {categories.map((category, index) => (
           <motion.div key={index} variants={itemVariants} className="flex flex-col gap-6">
-            <h3 className="font-sans text-xs text-neural font-bold uppercase tracking-widest border-l-2 border-neural pl-3">
+            <h3 className="font-sans text-xs text-primary-foreground font-bold uppercase tracking-widest border-l-2 border-primary-foreground pl-3">
               {category.title}
             </h3>
             <ul className="flex flex-col gap-4">
@@ -131,7 +131,7 @@ export function FullSiteNav({ isOpen, onClose, onNavigate }: FullSiteNavProps) {
                         onClose();
                       }}
                       onMouseEnter={() => playTriggered(AudioId.TICK)}
-                      className="text-2xl sm:text-3xl font-bold text-gray-700 hover:text-black transition-colors text-left block group"
+                      className="text-2xl sm:text-3xl font-bold text-primary-foreground hover:text-primary-foreground-hover transition-colors text-left block group"
                     >
                       <span className="inline-block transition-transform duration-300 group-hover:translate-x-2">
                         {link.label}
@@ -143,7 +143,7 @@ export function FullSiteNav({ isOpen, onClose, onNavigate }: FullSiteNavProps) {
                       target="_blank"
                       rel="noopener noreferrer"
                       onMouseEnter={() => playTriggered(AudioId.TICK)}
-                      className="text-2xl sm:text-3xl font-bold text-gray-400 hover:text-black transition-colors text-left block group"
+                      className="text-2xl sm:text-3xl font-bold text-foreground-soft hover:text-primary-foreground-hover transition-colors text-left block group"
                     >
                       <span className="inline-block transition-transform duration-300 group-hover:translate-x-2">
                         {link.label} <span className="text-sm font-normal align-super">↗</span>
@@ -158,15 +158,15 @@ export function FullSiteNav({ isOpen, onClose, onNavigate }: FullSiteNavProps) {
       </div>
 
       {/* Minimal Footer Spacer / Counterweight */}
-      <div className="w-full flex flex-col sm:flex-row justify-between items-center gap-2 text-xs font-sans text-gray-400/50 border-t border-gray-200/20 pt-4">
-        <div className="w-full text-center text-xs font-sans text-gray-400/50">
+      <div className="w-full flex flex-col sm:flex-row justify-between items-center gap-2 text-xs font-sans text-foreground-soft/50 border-t border-primary-border/20 pt-4">
+        <div className="w-full text-center text-xs font-sans text-foreground-soft/50">
           © 2026 Doublethink Solutions. All rights reserved.
         </div>
         <div className="flex gap-4">
           <a 
             href="/privacy"
             onMouseEnter={() => playTriggered(AudioId.TICK)}
-            className="hover:text-gray-600 transition-colors underline underline-offset-2 decoration-gray-400/30 hover:decoration-current"
+            className="hover:text-foreground-soft transition-colors underline underline-offset-2 decoration-foreground-soft/30 hover:decoration-current"
             >
             Privacy Policy
           </a>

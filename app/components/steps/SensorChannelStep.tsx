@@ -119,7 +119,7 @@ export default function SensorChannelsStep({ onAnimationComplete }: StepComponen
           {/* Central Display Area for Channel Code */}
           <motion.div 
             variants={itemVariants}
-            className="absolute flex flex-col items-center justify-center w-24 h-24 md:w-28 md:h-28 rounded-full bg-gray-50/50 backdrop-blur-sm border border-gray-200/50 shadow-inner z-10"
+            className="absolute flex flex-col items-center justify-center w-24 h-24 md:w-28 md:h-28 rounded-full bg-primary/50 backdrop-blur-sm border border-primary-border/50 shadow-inner z-10"
           >
             <AnimatePresence mode="popLayout">
               <motion.span
@@ -128,12 +128,12 @@ export default function SensorChannelsStep({ onAnimationComplete }: StepComponen
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.2 }}
-                className="font-sans text-xl font-bold tracking-wider text-gray-400"
+                className="font-sans text-xl font-bold tracking-wider text-foreground-soft"
               >
                 {hoveredChannel ? hoveredChannel.code : '---'}
               </motion.span>
             </AnimatePresence>
-            <span className="text-[9px] md:text-[10px] uppercase tracking-widest text-gray-400 mt-0.5 md:mt-1 font-medium">
+            <span className="text-[9px] md:text-[10px] uppercase tracking-widest text-foreground-soft mt-0.5 md:mt-1 font-medium">
               Channel
             </span>
           </motion.div>
@@ -209,7 +209,7 @@ export default function SensorChannelsStep({ onAnimationComplete }: StepComponen
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="text-sm md:text-lg text-gray-400 leading-relaxed font-normal italic text-center md:text-left"
+              className="text-sm md:text-lg text-foreground-soft leading-relaxed font-normal italic text-center md:text-left"
             >
               Hover over a channel name to learn more.
             </motion.div>
@@ -221,32 +221,32 @@ export default function SensorChannelsStep({ onAnimationComplete }: StepComponen
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -4 }}
               transition={{ duration: 0.2 }}
-              className="flex flex-col space-y-2 md:space-y-4 pointer-events-none bg-white/10 md:bg-transparent p-3 md:p-0 rounded-xl backdrop-blur-sm md:backdrop-blur-none border border-gray-200/40 md:border-none shadow-lg md:shadow-none"
+              className="flex flex-col space-y-2 md:space-y-4 pointer-events-none bg-primary/10 md:bg-transparent p-3 md:p-0 rounded-xl backdrop-blur-sm md:backdrop-blur-none border border-primary-border/40 md:border-none shadow-lg md:shadow-none"
             >
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between md:flex-col md:items-start md:justify-start gap-1">
-                <h3 className="text-base md:text-2xl font-bold tracking-tight text-gray-900">
+                <h3 className="text-base md:text-2xl font-bold tracking-tight text-foreground">
                   {hoveredChannel.name}
                 </h3>
                 
                 <div className="flex flex-wrap items-center gap-1.5 md:mt-2">
-                  <span className="text-[10px] md:text-xs px-2 py-0.5 font-sans rounded-md bg-gray-100 text-gray-600 border border-gray-200">
+                  <span className="text-[10px] md:text-xs px-2 py-0.5 font-sans rounded-md bg-secondary text-secondary-foreground border border-secondary-border">
                     Unit: {hoveredChannel.unit}
                   </span>
-                  <span className="text-[9px] md:text-[11px] px-2 py-0.5 font-bold tracking-wider rounded-md border border-gray-300 text-gray-700">
+                  <span className="text-[9px] md:text-[11px] px-2 py-0.5 font-bold tracking-wider rounded-md border border-primary-border text-primary-foreground">
                     {hoveredChannel.sampleType}
                   </span>
                 </div>
               </div>
 
-              <div className="text-gray-600 text-xs md:text-base leading-relaxed line-clamp-2 sm:line-clamp-none">
+              <div className="text-primary-foreground text-xs md:text-base leading-relaxed line-clamp-2 sm:line-clamp-none">
                 {hoveredChannel.description}
               </div>
 
-              <div className="pt-2 md:pt-4 border-t border-gray-100 flex flex-col sm:flex-row sm:items-center sm:space-x-3 sm:space-y-0 space-y-1">
-                <span className="text-[9px] md:text-xs font-semibold tracking-widest text-gray-500 uppercase shrink-0">
+              <div className="pt-2 md:pt-4 border-t border-secondary-border flex flex-col sm:flex-row sm:items-center sm:space-x-3 sm:space-y-0 space-y-1">
+                <span className="text-[9px] md:text-xs font-semibold tracking-widest text-secondary-foreground uppercase shrink-0">
                   Example:
                 </span>
-                <p className="text-xs md:text-sm text-gray-500 font-mono bg-gray-50/50 p-1.5 md:p-2 rounded border border-gray-100 truncate w-full">
+                <p className="text-xs md:text-sm text-secondary-foreground font-mono bg-secondary/50 p-1.5 md:p-2 rounded border border-secondary-border truncate w-full">
                   {hoveredChannel.example}
                 </p>
               </div>

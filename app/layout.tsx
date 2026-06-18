@@ -3,6 +3,7 @@ import { League_Spartan, Manrope } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import { AudioProvider } from "./context/AudioContext";
+import { ThemeProvider } from "./context/ThemeProvider";
 
 /**
  * THE MONOLITH: League Spartan (Google Fonts)
@@ -77,7 +78,9 @@ export default function RootLayout({
         `}
       >
         <AudioProvider>
-          {children}
+          <ThemeProvider>
+            {children}
+          </ThemeProvider>
         </AudioProvider>
       </body>
     </html>

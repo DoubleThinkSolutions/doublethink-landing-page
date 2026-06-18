@@ -9,7 +9,7 @@ export function SubtitleDisplay() {
   const { currentSubtitle } = useAudio();
 
   return (
-    <div className="absolute top-6 left-20 z-50 pointer-events-none min-h-10">
+    <div className="absolute top-6 center z-50 pointer-events-none min-h-10">
       <AnimatePresence mode="wait">
         {currentSubtitle && (
           <motion.div
@@ -17,7 +17,7 @@ export function SubtitleDisplay() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="bg-black/70 text-gray-200 px-4 py-1.5 rounded-full text-sm font-medium tracking-wide shadow-md uppercase backdrop-blur-sm"
+            className="bg-inverted/70 text-inverted-foreground px-4 py-1.5 rounded-full text-sm font-medium tracking-wide shadow-md uppercase backdrop-blur-sm"
           >
             {currentSubtitle}
           </motion.div>
@@ -42,8 +42,8 @@ export function AudioControls() {
         }}
         className={`${baseButtonStyles} ${
           isSubtitlesEnabled 
-            ? 'border-zinc-400 bg-zinc-100/80 text-zinc-900' 
-            : 'border-zinc-300 bg-white/70 text-zinc-400 hover:bg-zinc-100'
+            ? 'border-primary-foreground bg-primary/80 text-primary-foreground' 
+            : 'border-primary-border/70 bg-primary/70 text-primary-foreground-disabled hover:bg-primary-hover'
         }`}
         title="Toggle Subtitles"
         aria-label="Toggle Subtitles"
@@ -59,8 +59,8 @@ export function AudioControls() {
         }}
         className={`${baseButtonStyles} ${
           isAudioEnabled 
-            ? 'border-zinc-400 bg-zinc-100/80 text-zinc-900' 
-            : 'border-zinc-300 bg-white/70 text-zinc-400 hover:bg-zinc-100'
+            ? 'border-primary-foreground bg-primary/80 text-primary-foreground' 
+            : 'border-primary-border/70 bg-primary/70 text-primary-foreground-disabled hover:bg-primary-hover'
         }`}
         title="Toggle Sound"
         aria-label="Toggle Sound"

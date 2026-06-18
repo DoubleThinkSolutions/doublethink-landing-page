@@ -34,7 +34,7 @@ export function FooterNav({ onNavigate, onOpenFullNav, isFullNavOpen }: FooterNa
             playTriggered(AudioId.CLICK);
             setIsOpen(!isOpen);
           }}
-          className="pointer-events-auto flex items-center justify-center p-3 rounded-full bg-gray-100/80 hover:bg-gray-200 transition-colors backdrop-blur-sm shadow-sm mx-auto group"
+          className="pointer-events-auto flex items-center justify-center p-3 rounded-full bg-secondary/80 hover:bg-secondary-hover transition-colors backdrop-blur-sm shadow-sm mx-auto group"
           aria-label="Toggle drawer panel"
         >
           <motion.svg
@@ -43,7 +43,7 @@ export function FooterNav({ onNavigate, onOpenFullNav, isFullNavOpen }: FooterNa
             viewBox="0 0 24 24"
             strokeWidth={2.5}
             stroke="currentColor"
-            className="w-5 h-5 text-gray-600 group-hover:text-gray-900"
+            className="w-5 h-5 text-secondary-foreground group-hover:text-secondary-foreground-hover"
             animate={{ rotate: isOpen ? 180 : 0 }}
             transition={{ type: 'spring', damping: 15 }}
           >
@@ -60,7 +60,7 @@ export function FooterNav({ onNavigate, onOpenFullNav, isFullNavOpen }: FooterNa
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ type: 'spring', damping: 25, stiffness: 180 }}
-            className="w-full pointer-events-auto overflow-hidden border-t border-gray-200/30 bg-white"
+            className="w-full pointer-events-auto overflow-hidden border-t border-primary-border/30 bg-background"
           >
             <div className="w-full px-8 pt-10 pb-8 flex flex-col sm:flex-row justify-center items-center gap-6 sm:gap-12 relative min-h-[100px]">
               
@@ -68,7 +68,7 @@ export function FooterNav({ onNavigate, onOpenFullNav, isFullNavOpen }: FooterNa
                 <Typewriter
                   text="Going somewhere?"
                   delay={0.1}
-                  className="text-xs font-sans tracking-wider text-gray-400 uppercase"
+                  className="text-xs font-sans tracking-wider text-foreground-soft uppercase"
                 />
               </div>
 
@@ -85,10 +85,10 @@ export function FooterNav({ onNavigate, onOpenFullNav, isFullNavOpen }: FooterNa
                     onNavigate(link.target);
                     setIsOpen(false);
                   }}
-                  className="text-gray-600 hover:text-black font-medium tracking-wide text-base transition-colors relative group py-1"
+                  className="text-primary-foreground hover:text-primary-foreground-hover font-medium tracking-wide text-base transition-colors relative group py-1"
                 >
                   {link.label}
-                  <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-gray-900 transition-all duration-300 group-hover:w-full" />
+                  <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-foreground transition-all duration-300 group-hover:w-full" />
                 </motion.button>
               ))}
 
@@ -96,7 +96,7 @@ export function FooterNav({ onNavigate, onOpenFullNav, isFullNavOpen }: FooterNa
               <div className="absolute top-2 right-6 h-4">
                 <button
                 onClick={onOpenFullNav}
-                className="pointer-events-auto text-xs font-sans font-semibold tracking-widest text-gray-400 hover:text-black uppercase px-3 py-1.5 transition-colors"
+                className="pointer-events-auto text-xs font-sans font-semibold tracking-widest text-foreground-secondary hover:text-foreground-secondary-hover uppercase px-3 py-1.5 transition-colors"
                 >
                 {isFullNavOpen ? '[ Close ]' : 'Table of Contents'}
                 </button>

@@ -11,6 +11,7 @@ import StepOptions from './components/StepOptions';
 import { useAudio } from './context/AudioContext';
 import { AudioControls, SubtitleDisplay } from './components/AudioOverlays';
 import { AudioId } from './lib/audioConfig';
+import { ThemeControls } from './components/ThemeControls';
 
 const GuyLogo = () => (
   <img
@@ -50,14 +51,15 @@ export default function HomeState() {
     : null;
 
   return (
-    <main className="relative w-full h-screen bg-white flex items-center justify-center overflow-hidden">
+    <main className="relative w-full h-screen bg-background flex items-center justify-center overflow-hidden">
       
+      <ThemeControls />
       <SubtitleDisplay />
       <AudioControls />
 
       {/* Background & Logo Container */}
       <motion.div
-        className="absolute inset-0 flex items-center justify-center overflow-visible"
+        className="absolute inset-0 flex items-center justify-center overflow-visible w-full"
         initial={{ filter: 'blur(0px)', opacity: 1 }}
         animate={{ 
           filter: isChatMode ? 'blur(16px)' : 'blur(0px)', 
@@ -65,10 +67,10 @@ export default function HomeState() {
         }}
         transition={{ duration: 1.5, ease: 'easeInOut' }}
       >
-        <div className="relative flex flex-col items-center justify-center gap-6 overflow-visible">
+        <div className="relative flex flex-col items-center justify-center gap-6 overflow-visible w-full">
 
           <motion.div 
-            className="absolute w-[200%] h-[200%] rounded-full opacity-10 bg-[radial-gradient(circle,rgba(56,189,248,0.35)_0%,rgba(168,85,247,0.15)_50%,transparent_70%)] blur-3xl pointer-events-none"
+            className="absolute w-full h-[200%] rounded-full opacity-10 bg-[radial-gradient(circle,rgba(56,189,248,0.35)_0%,rgba(168,85,247,0.15)_50%,transparent_70%)] blur-3xl pointer-events-none"
             animate={{ 
               scale: [0.9, 1.1, 0.9],
               opacity: [0.05, 0.2, 0.05]
@@ -85,7 +87,7 @@ export default function HomeState() {
             <GuyLogo />
 
             <motion.div 
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250%] aspect-square z-20 mix-blend-multiply pointer-events-none"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250%] z-20 mix-blend-multiply pointer-events-none"
               animate={{
                 '--g-tightness': ['100%', '70%', '100%'], 
                 '--g-strength': [0.1, 0.25, 0.1], 
@@ -143,7 +145,7 @@ export default function HomeState() {
                   <Typewriter 
                     text={currentStepData.text} 
                     delay={0.2} 
-                    className="text-3xl sm:text-5xl lg:text-6xl text-center p-8 font-bold text-gray-900"
+                    className="text-3xl sm:text-5xl lg:text-6xl text-center p-8 font-bold text-foreground"
                     onComplete={() => setShowOptions(true)}
                   />
                 )

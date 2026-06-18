@@ -76,7 +76,7 @@ export default function PhoneNode({ animStep, onCapture }: PhoneNodeProps) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -4 }}
               transition={{ duration: 0.2 }}
-              className="text-xs font-semibold text-primary tracking-wide text-center absolute whitespace-nowrap"
+              className="text-xs font-semibold text-foreground tracking-wide text-center absolute whitespace-nowrap"
             >
               Click me!
             </motion.span>

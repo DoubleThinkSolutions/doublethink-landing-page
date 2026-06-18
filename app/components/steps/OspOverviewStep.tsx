@@ -55,14 +55,14 @@ export default function OspOverviewStep({ onAnimationComplete }: StepComponentPr
         <Typewriter
             text="The Open Source Panopticon is our solution to online misinformation." 
             delay={0.2} 
-            className="text-2xl md:text-3xl font-extrabold tracking-tight text-gray-900"
+            className="text-2xl md:text-3xl font-extrabold tracking-tight text-foreground"
         />
         
         <Typewriter
             text="When media is captured with the OSP app, it is immediately uploaded with 92-channels of sensor data to our secure server.
 The server cryptographicaly signs the package and assigns it a trust score, establishing the ground truth for events around the world." 
             delay={3.5} 
-            className="text-sm md:text-base text-gray-600 leading-relaxed"
+            className="text-sm md:text-base text-foreground-secondary leading-relaxed"
             speedScale={0.08}
         />
       </div>
