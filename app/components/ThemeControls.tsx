@@ -5,9 +5,7 @@ import { Sun, Moon, Eye, Palette, X } from 'lucide-react';
 import { useAudio } from '../context/AudioContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AudioId } from '../lib/audioConfig';
-import { useTheme } from '../context/ThemeProvider';
-
-type ThemeMode = 'light' | 'dark' | 'low-contrast' | 'blue-yellow' | 'green-magenta';
+import { THEME_CLASSES, ThemeMode, useTheme } from '../context/ThemeProvider';
 
 export function ThemeControls() {
   const { playTriggered } = useAudio();
@@ -23,6 +21,7 @@ export function ThemeControls() {
     switch (theme) {
       case 'light': return <Sun className="h-5 w-5" strokeWidth={2} />;
       case 'low-contrast': return <Eye className="h-5 w-5" strokeWidth={2} />;
+      case 'low-contrast-dark': return <Eye className="h-5 w-5" strokeWidth={2} />;
       case 'blue-yellow':
       case 'green-magenta': return <Palette className="h-5 w-5" strokeWidth={2} />;
       default: return <Moon className="h-5 w-5" strokeWidth={2} />;
@@ -33,8 +32,7 @@ export function ThemeControls() {
     setCurrentTheme(newTheme);
     playTriggered(AudioId.CLICK);
     
-    const themeClasses: ThemeMode[] = ['light', 'dark', 'low-contrast', 'blue-yellow', 'green-magenta'];
-    document.documentElement.classList.remove(...themeClasses);
+    document.documentElement.classList.remove(...THEME_CLASSES);
     
     if (newTheme !== 'light') {
       document.documentElement.classList.add(newTheme);
@@ -125,16 +123,27 @@ export function ThemeControls() {
 
                 {/* Row 2: Low Contrast/Dyslexia Theme */}
                 <div className="flex flex-col gap-2">
-                  <span className="text-xs font-sans tracking-wider text-foreground-soft/70 uppercase font-medium">Contrast</span>
-                  <button
-                    onClick={() => handleThemeChange('low-contrast')}
-                    onMouseEnter={() => playTriggered(AudioId.TICK)}
-                    className={`flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border text-sm font-medium transition-all w-full ${
-                      currentTheme === 'low-contrast' ? activeStyles : inactiveStyles
-                    }`}
-                  >
-                    <Eye className="h-4 w-4" /> Low Contrast Typography Theme
-                  </button>
+                  <span className="text-xs font-sans tracking-wider text-foreground-soft/70 uppercase font-medium">Low Contrast</span>
+                  <div className="grid grid-cols-2 gap-2">
+                    <button
+                      onClick={() => handleThemeChange('low-contrast')}
+                      onMouseEnter={() => playTriggered(AudioId.TICK)}
+                      className={`flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl border text-xs font-medium transition-all ${
+                        currentTheme === 'low-contrast' ? activeStyles : inactiveStyles
+                      }`}
+                    >
+                      <Eye className="h-4 w-4 shrink-0" /> Light Contrast
+                    </button>
+                    <button
+                      onClick={() => handleThemeChange('low-contrast-dark')}
+                      onMouseEnter={() => playTriggered(AudioId.TICK)}
+                      className={`flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl border text-xs font-medium transition-all ${
+                        currentTheme === 'low-contrast-dark' ? activeStyles : inactiveStyles
+                      }`}
+                    >
+                      <Eye className="h-4 w-4 shrink-0" /> Dark Contrast
+                    </button>
+                  </div>
                 </div>
 
                 {/* Row 3: Color Blind Adjustments */}

@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { League_Spartan, Manrope } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
-import { AudioProvider } from "./context/AudioContext";
-import { ThemeProvider } from "./context/ThemeProvider";
+import { AppProvider } from "./context/AppProvider";
 
 /**
  * THE MONOLITH: League Spartan (Google Fonts)
@@ -68,7 +67,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="bg-gray-700">
       <body
         className={`
           ${leagueSpartan.variable} 
@@ -77,11 +76,9 @@ export default function RootLayout({
           antialiased
         `}
       >
-        <AudioProvider>
-          <ThemeProvider>
-            {children}
-          </ThemeProvider>
-        </AudioProvider>
+        <AppProvider>
+          {children}
+        </AppProvider>
       </body>
     </html>
   );

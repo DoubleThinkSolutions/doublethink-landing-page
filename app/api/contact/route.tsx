@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-// Helper to clean up the Form Type for the subject line
 const formatFormType = (type: string) => {
   switch (type) {
     case 'contributor': return 'Contributor Waitlist';
@@ -50,13 +49,10 @@ export async function POST(request: Request) {
 
     const { name, company, email, message, formType, source } = await request.json();
 
-    // VALIDATION: Message is now optional only if formType is 'contributor'
-    // But generally, we just check Name and Email.
     if (!name || !email) {
       return NextResponse.json({ error: 'Name and email are required.' }, { status: 400 });
     }
 
-    // 1. Send email to your company (The "Manual List Building" email)
     const subjectLine = `[${formatFormType(formType)}] New Submission from ${name}`;
     
     const toCompany = await resend.emails.send({
@@ -71,8 +67,7 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: 'Failed to send email. Please try again later.' }, { status: 500 });
     }
 
-    // 2. Send confirmation email to the sender
-    const toSender = await resend.emails.send({
+    await resend.emails.send({
         from: fromEmail,
         to: email,
         subject: 'We received your submission',

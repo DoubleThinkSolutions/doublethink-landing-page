@@ -18,6 +18,8 @@ interface AudioContextType {
 const AudioContext = createContext<AudioContextType | undefined>(undefined);
 
 const MIN_SUBTITLE_DURATION = 2000;
+const AUDIO_ENABLED_KEY = 'app-audio-enabled';
+const SUBTITLES_ENABLED_KEY = 'app-subtitles-enabled';
 
 const getAudioSrc = (src: string | SoundAsset): string => {
   if (typeof src === 'string') return src;
@@ -25,8 +27,16 @@ const getAudioSrc = (src: string | SoundAsset): string => {
 };
 
 export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [isAudioEnabled, setIsAudioEnabled] = useState(true);
-  const [isSubtitlesEnabled, setIsSubtitlesEnabled] = useState(true);
+  const [isAudioEnabled, setIsAudioEnabled] = useState<boolean>(() => {
+    const saved = localStorage.getItem(AUDIO_ENABLED_KEY);
+    return saved !== null ? saved === 'true' : true;
+  });
+
+  const [isSubtitlesEnabled, setIsSubtitlesEnabled] = useState<boolean>(() => {
+    const saved = localStorage.getItem(SUBTITLES_ENABLED_KEY);
+    return saved !== null ? saved === 'true' : true;
+  });
+
   const [activeSounds, setActiveSounds] = useState<string[]>([]);
 
   const audioCtxRef = useRef<AudioContext | null>(null);
@@ -78,6 +88,17 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       Object.values(activeTimeoutsRef.current).forEach(clearTimeout);
     };
   }, []);
+
+  useEffect(() => {
+    if (gainNodeRef.current) {
+      gainNodeRef.current.gain.value = isAudioEnabled ? 1.0 : 0.0;
+    }
+    localStorage.setItem(AUDIO_ENABLED_KEY, String(isAudioEnabled));
+  }, [isAudioEnabled]);
+
+  useEffect(() => {
+    localStorage.setItem(SUBTITLES_ENABLED_KEY, String(isSubtitlesEnabled));
+  }, [isSubtitlesEnabled]);
 
   useEffect(() => {
     if (gainNodeRef.current) {

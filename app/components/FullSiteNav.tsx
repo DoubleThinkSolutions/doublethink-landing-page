@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, Variants } from 'framer-motion';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Typewriter } from './Typewriter';
 import { useAudio } from '../context/AudioContext';
 import { AudioId } from '../lib/audioConfig';
@@ -25,6 +25,7 @@ interface FullSiteNavProps {
 
 export function FullSiteNav({ isOpen, onClose, onNavigate }: FullSiteNavProps) {
   const { playTriggered } = useAudio();
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -97,15 +98,25 @@ export function FullSiteNav({ isOpen, onClose, onNavigate }: FullSiteNavProps) {
       initial="hidden"
       animate="visible"
       exit="exit"
+      onAnimationComplete={(definition) => {
+        if (definition === 'visible') {
+          setIsReady(true);
+        }
+      }}
       className="absolute inset-0 z-40 bg-background/40 backdrop-blur-xl flex flex-col justify-between p-8 sm:p-16 overflow-y-auto"
     >
       {/* Top Banner Row */}
       <div className="w-full flex justify-between items-center border-b border-primary-border/50 pb-6">
-        <Typewriter
-          text="There's so much more to see..."
-          delay={0.1}
-          className="font-sans text-sm tracking-widest text-foreground-soft uppercase"
-        />
+        {isReady ? (
+            <Typewriter
+              text="There's so much more to see..."
+              className="font-sans text-sm tracking-widest text-foreground-soft uppercase"
+            />
+          ) : (
+            <span className="font-sans text-sm tracking-widest uppercase opacity-0">
+              There's so much more to see...
+            </span>
+          )}
         <button
           onClick={onClose}
           className="text-xs font-sans uppercase tracking-wider text-primary-foreground hover:text-primary-foreground-hover px-3 py-1 rounded border border-primary-border hover:border-primary-foreground-hover transition-colors"

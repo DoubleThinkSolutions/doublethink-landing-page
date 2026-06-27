@@ -1,4 +1,3 @@
-import { click004Sound } from "@/lib/click-004";
 import { click8bitSound } from "@/lib/click-8bit";
 import { clickSoftSound } from "@/lib/click-soft";
 import { SoundAsset } from "@/lib/sound-types";
@@ -23,20 +22,20 @@ export const AUDIO_CONFIG: Record<string, AudioTrack> = {
     src: clickSoftSound,
     priority: 10,
     subtitle: '[click]',
-    volume: 0.3,
+    volume: 0.1,
   },
     tick: {
     id: AudioId.TICK,
-    src: click004Sound,
+    src: click8bitSound,
     priority: 10,
     subtitle: '[tick]',
-    volume: 0.1,
+    volume: 0.07,
   },
    clack: {
     id: AudioId.CLACK,
     src: click8bitSound,
     priority: 10,
     subtitle: '[clack]',
-    volume: 0.4,
+    volume: 0.1,
   },
 };

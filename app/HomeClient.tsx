@@ -12,6 +12,7 @@ import { useAudio } from './context/AudioContext';
 import { AudioControls, SubtitleDisplay } from './components/AudioOverlays';
 import { AudioId } from './lib/audioConfig';
 import { ThemeControls } from './components/ThemeControls';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const GuyLogo = () => (
   <img
@@ -22,8 +23,12 @@ const GuyLogo = () => (
 );
 
 export default function HomeState() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  
+  const currentStepId = searchParams.get('p') || 'greeting';
+
   const [stage, setStage] = useState<'floating' | 'chat'>('floating');
-  const [currentStepId, setCurrentStepId] = useState<string>('greeting');
   const [showOptions, setShowOptions] = useState(false);
   const [isSiteNavOpen, setIsSiteNavOpen] = useState(false);
 
@@ -39,8 +44,11 @@ export default function HomeState() {
 
   const handleOptionClick = (targetId: string) => {
     setShowOptions(false);
-    setCurrentStepId(targetId);
     setIsSiteNavOpen(false);
+
+    const params = new URLSearchParams(searchParams.toString());
+    params.set('p', targetId);
+    router.push(`?${params.toString()}`, { scroll: false });
   };
 
   const isChatMode = stage === 'chat';

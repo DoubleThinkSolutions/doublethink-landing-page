@@ -14,6 +14,7 @@ interface FooterNavProps {
 
 export function FooterNav({ onNavigate, onOpenFullNav, isFullNavOpen }: FooterNavProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [drawerReady, setDrawerReady] = useState(false);
   const { playTriggered } = useAudio();
 
   const navLinks = [
@@ -32,7 +33,9 @@ export function FooterNav({ onNavigate, onOpenFullNav, isFullNavOpen }: FooterNa
         <button
           onClick={() => {
             playTriggered(AudioId.CLICK);
-            setIsOpen(!isOpen);
+            const nextState = !isOpen;
+            setIsOpen(nextState);
+            if (!nextState) setDrawerReady(false);
           }}
           className="pointer-events-auto flex items-center justify-center p-3 rounded-full bg-secondary/80 hover:bg-secondary-hover transition-colors backdrop-blur-sm shadow-sm mx-auto group"
           aria-label="Toggle drawer panel"
@@ -60,16 +63,22 @@ export function FooterNav({ onNavigate, onOpenFullNav, isFullNavOpen }: FooterNa
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ type: 'spring', damping: 25, stiffness: 180 }}
+            onAnimationComplete={(definition) => {
+              if ((definition as any).height === 'auto') {
+                setDrawerReady(true);
+              }
+            }}
             className="w-full pointer-events-auto overflow-hidden border-t border-primary-border/30 bg-background"
           >
             <div className="w-full px-8 pt-10 pb-8 flex flex-col sm:flex-row justify-center items-center gap-6 sm:gap-12 relative min-h-[100px]">
               
               <div className="absolute top-2 left-6 h-4">
-                <Typewriter
-                  text="Going somewhere?"
-                  delay={0.1}
-                  className="text-xs font-sans tracking-wider text-foreground-soft uppercase"
-                />
+                {drawerReady && (
+                  <Typewriter
+                    text="Going somewhere?"
+                    className="text-xs font-sans tracking-wider text-foreground-soft uppercase"
+                  />
+                )}
               </div>
 
               {navLinks.map((link, index) => (

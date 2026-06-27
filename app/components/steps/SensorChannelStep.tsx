@@ -171,8 +171,8 @@ export default function SensorChannelsStep({ onAnimationComplete }: StepComponen
                   animate={{
                     letterSpacing: isCurrentHovered ? '0.12em' : '0.02em',
                     color: isCurrentHovered 
-                      ? 'rgba(17, 24, 39, 1)'
-                      : 'rgba(156, 163, 175, 0.7)',
+                      ? 'var(--color-foreground)' 
+                      : 'var(--color-foreground-secondary)',
                     scale: isCurrentHovered ? 1.05 : 1,
                   }}
                   style={{
