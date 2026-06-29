@@ -1,4 +1,4 @@
-import channelsData from '@/osp-sensors/channels.json';
+import channelsData from '../../osp-sensors/channels.json';
 
 export interface ComponentIndexRange {
   start: number;
