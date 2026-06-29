@@ -232,15 +232,6 @@ export default function SensorChannelsStep({ onAnimationComplete }: StepComponen
                   <span className="text-[9px] md:text-[11px] px-2 py-0.5 font-bold tracking-wider rounded-md border border-primary-border text-primary-foreground">
                     {hoveredChannel.sampleType}
                   </span>
-
-                  {hoveredChannel.flags && hoveredChannel.flags.map((flag) => (
-                    <span 
-                      key={flag} 
-                      className="text-[9px] md:text-[10px] px-2 py-0.5 font-sans font-medium rounded-md bg-destructive/20 text-destructive border border-destructive/30 uppercase tracking-wide"
-                    >
-                      {flag.replace(/_/g, ' ')}
-                    </span>
-                  ))}
                 </div>
               </div>
 

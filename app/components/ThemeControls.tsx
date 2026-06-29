@@ -102,7 +102,6 @@ export function ThemeControls() {
                   <div className="grid grid-cols-2 gap-2">
                     <button
                       onClick={() => handleThemeChange('light')}
-                      onMouseEnter={() => playTriggered(AudioId.TICK)}
                       className={`flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border text-sm font-medium transition-all ${
                         currentTheme === 'light' ? activeStyles : inactiveStyles
                       }`}
@@ -111,7 +110,6 @@ export function ThemeControls() {
                     </button>
                     <button
                       onClick={() => handleThemeChange('dark')}
-                      onMouseEnter={() => playTriggered(AudioId.TICK)}
                       className={`flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border text-sm font-medium transition-all ${
                         currentTheme === 'dark' ? activeStyles : inactiveStyles
                       }`}
@@ -127,7 +125,6 @@ export function ThemeControls() {
                   <div className="grid grid-cols-2 gap-2">
                     <button
                       onClick={() => handleThemeChange('low-contrast')}
-                      onMouseEnter={() => playTriggered(AudioId.TICK)}
                       className={`flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl border text-xs font-medium transition-all ${
                         currentTheme === 'low-contrast' ? activeStyles : inactiveStyles
                       }`}
@@ -136,7 +133,6 @@ export function ThemeControls() {
                     </button>
                     <button
                       onClick={() => handleThemeChange('low-contrast-dark')}
-                      onMouseEnter={() => playTriggered(AudioId.TICK)}
                       className={`flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl border text-xs font-medium transition-all ${
                         currentTheme === 'low-contrast-dark' ? activeStyles : inactiveStyles
                       }`}
@@ -152,7 +148,6 @@ export function ThemeControls() {
                   <div className="grid grid-cols-2 gap-2">
                     <button
                       onClick={() => handleThemeChange('blue-yellow')}
-                      onMouseEnter={() => playTriggered(AudioId.TICK)}
                       className={`flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl border text-xs font-medium transition-all 
                         ${
                         currentTheme === 'blue-yellow' ? activeStyles : inactiveStyles
@@ -162,7 +157,6 @@ export function ThemeControls() {
                     </button>
                     <button
                       onClick={() => handleThemeChange('green-magenta')}
-                      onMouseEnter={() => playTriggered(AudioId.TICK)}
                       className={`flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl border text-xs font-medium transition-all ${
                         currentTheme === 'green-magenta' ? activeStyles : inactiveStyles
                       }`}
