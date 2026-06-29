@@ -229,12 +229,18 @@ export default function SensorChannelsStep({ onAnimationComplete }: StepComponen
                 </h3>
                 
                 <div className="flex flex-wrap items-center gap-1.5 md:mt-2">
-                  <span className="text-[10px] md:text-xs px-2 py-0.5 font-sans rounded-md bg-secondary text-secondary-foreground border border-secondary-border">
-                    Unit: {hoveredChannel.unit}
-                  </span>
                   <span className="text-[9px] md:text-[11px] px-2 py-0.5 font-bold tracking-wider rounded-md border border-primary-border text-primary-foreground">
                     {hoveredChannel.sampleType}
                   </span>
+
+                  {hoveredChannel.flags && hoveredChannel.flags.map((flag) => (
+                    <span 
+                      key={flag} 
+                      className="text-[9px] md:text-[10px] px-2 py-0.5 font-sans font-medium rounded-md bg-destructive/20 text-destructive border border-destructive/30 uppercase tracking-wide"
+                    >
+                      {flag.replace(/_/g, ' ')}
+                    </span>
+                  ))}
                 </div>
               </div>
 
@@ -242,13 +248,29 @@ export default function SensorChannelsStep({ onAnimationComplete }: StepComponen
                 {hoveredChannel.description}
               </div>
 
-              <div className="pt-2 md:pt-4 border-t border-secondary-border flex flex-col sm:flex-row sm:items-center sm:space-x-3 sm:space-y-0 space-y-1">
+              <div className="pt-2 md:pt-4 border-t border-secondary-border flex flex-col space-y-2">
                 <span className="text-[9px] md:text-xs font-semibold tracking-widest text-secondary-foreground uppercase shrink-0">
-                  Example:
+                  Components ({hoveredChannel.dims}D):
                 </span>
-                <p className="text-xs md:text-sm text-secondary-foreground font-mono bg-secondary/50 p-1.5 md:p-2 rounded border border-secondary-border truncate w-full">
-                  {hoveredChannel.example}
-                </p>
+                <div className="flex flex-col space-y-2 w-full max-h-40 overflow-y-auto pr-1">
+                  {hoveredChannel.components.map((comp, idx) => (
+                    <div 
+                      key={`${comp.name}-${idx}`}
+                      className="text-xs md:text-sm text-secondary-foreground bg-secondary/30 p-2 rounded border border-secondary-border flex flex-col space-y-1"
+                    >
+                      <div className="flex justify-between items-center font-sans">
+                        <span className="font-semibold text-foreground">{comp.name}</span>
+                        <span className="text-[10px] font-mono bg-secondary px-1.5 py-0.5 rounded border border-secondary-border">
+                          {comp.unit}
+                        </span>
+                      </div>
+                      <div className="flex space-x-4 text-[11px] text-foreground-soft font-mono">
+                        <span>Indices: {comp.indices.start === comp.indices.endInclusive ? comp.indices.start : `${comp.indices.start}-${comp.indices.endInclusive}`}</span>
+                        <span>Type: {comp.type}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </motion.div>
           )}

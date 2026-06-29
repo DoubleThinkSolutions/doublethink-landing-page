@@ -1,0 +1,3 @@
+[submodule "osp-sensors"]
+	path = osp-sensors
+	url = https://github.com/DoubleThinkSolutions/osp-sensors.git
