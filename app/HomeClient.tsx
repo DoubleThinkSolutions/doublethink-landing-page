@@ -59,7 +59,7 @@ export default function HomeState() {
     : null;
 
   return (
-    <main className="relative w-full h-screen bg-background flex items-center justify-center overflow-hidden">
+    <main className="relative w-full h-dvh bg-background flex items-center justify-center overflow-hidden">
       
       <ThemeControls />
       <SubtitleDisplay />
@@ -130,7 +130,7 @@ export default function HomeState() {
         {isChatMode && currentStepData && !isSiteNavOpen && (
           <motion.div 
             key={currentStepId}
-            className="z-10 absolute inset-0 flex flex-col items-center justify-center max-w-6xl mx-auto"
+            className="z-10 absolute inset-0 flex flex-col items-center justify-between max-w-6xl mx-auto px-4 pt-12 pb-24 sm:pb-16 overflow-y-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -138,7 +138,7 @@ export default function HomeState() {
           >
 
             {/* Guy's Text */}
-            <div className="flex-1 flex items-center justify-center w-full min-h-[50vh]">
+            <div className="flex-1 flex items-center justify-center w-full my-auto py-4">
               {ActiveStepComponent ? (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}

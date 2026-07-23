@@ -105,7 +105,7 @@ export default function SensorChannelsStep({ onAnimationComplete }: StepComponen
         onMouseEnter={handleMouseEnter}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        className="relative flex items-center justify-center w-[1000px] h-[1000px] -translate-x-1/4"
+        className="relative flex items-center justify-center w-full aspect-square order-1 shrink-0 mx-auto"
       >
         <motion.div 
           ref={containerRef}
@@ -197,7 +197,7 @@ export default function SensorChannelsStep({ onAnimationComplete }: StepComponen
           hidden: { opacity: 0 },
           visible: { opacity: 1, transition: { duration: 0.6, delay: 0.2 } }
         }}
-        className="absolute top-4 md:bottom-4 left-4 right-4 md:relative md:left-auto md:right-auto min-h-[140px] md:min-h-[280px] flex flex-col justify-center p-4 md:p-8 overflow-hidden pointer-events-none z-20"
+        className="relative w-full h-60 md:h-[280px] flex flex-col justify-start p-2 md:p-8 overflow-hidden pointer-events-none z-10 order-2 shrink-0"
       >
 
         <AnimatePresence mode="popLayout">

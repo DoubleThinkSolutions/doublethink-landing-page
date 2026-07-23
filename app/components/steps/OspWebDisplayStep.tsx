@@ -16,7 +16,7 @@ export default function OspWebDisplayStep({ onAnimationComplete }: StepComponent
         />
 
         <Typewriter
-          text="Watch as media gets uploading live or filter for a specific time down to the minute. View the sensor data and watch it change frame by frame." 
+          text="Watch as media gets uploaded live or filter for a specific time down to the minute. View the sensor data and watch it change frame by frame." 
           delay={2.8} 
           className="text-sm md:text-base text-foreground-secondary leading-relaxed"
           onComplete={onAnimationComplete}

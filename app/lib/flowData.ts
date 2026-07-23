@@ -45,7 +45,6 @@ export const SITE_FLOW: Record<string, FlowStep> = {
     options: [
       { label: "Web platform", target: "osp_web" }
     ],
-    optionsSide: 'right',
   },
   osp_web: {
     id: 'osp_web',
