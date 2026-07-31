@@ -61,10 +61,12 @@ export function FullSiteNav({ isOpen, onClose, onNavigate }: FullSiteNavProps) {
       ],
     },
     {
-      title: 'Social & Network',
+      title: 'Social',
       links: [
-        { label: 'GitHub Profile', href: 'https://github.com/DoubleThinkSolutions' },
-        { label: 'LinkedIn Network', href: 'https://www.linkedin.com/company/doublethink-solutions' },
+        { label: 'X (Twitter)', href: 'https://x.com/StopDoublethink' },
+        { label: 'YouTube', href: 'https://www.youtube.com/doublethinksolutions' },
+        { label: 'LinkedIn', href: 'https://www.linkedin.com/company/doublethink-solutions' },
+        { label: 'Instagram', href: 'https://www.instagram.com/doublethinksolutions/' }
       ],
     },
   ];

@@ -29,12 +29,8 @@ export default function OspOverviewStep({ onAnimationComplete }: StepComponentPr
       const timer = setTimeout(() => setAnimStep('packet1'), 100);
       return () => clearTimeout(timer);
     }
-    if (animStep === 'server_sign') {
-      const timer = setTimeout(() => setAnimStep('server_score'), 1400);
-      return () => clearTimeout(timer);
-    }
     if (animStep === 'server_score') {
-      const timer = setTimeout(() => setAnimStep('packet2'), 1500);
+      const timer = setTimeout(() => setAnimStep('packet2'), 500);
       return () => clearTimeout(timer);
     }
     if (animStep === 'laptop_show') {
@@ -84,7 +80,7 @@ The server cryptographicaly signs the package and assigns it a trust score, esta
               animate={{ left: '50%', top: '25%', scale: 1, opacity: 1 }}
               exit={{ scale: 0.6, opacity: 0 }}
               transition={{ duration: 0.8, ease: 'easeInOut' }}
-              onAnimationComplete={() => setAnimStep('server_sign')}
+              onAnimationComplete={() => setAnimStep('server_score')}
               className="absolute w-7 h-7 bg-white border border-blue-500 rounded-md shadow-lg flex items-center justify-center text-blue-500 z-40 -translate-x-1/2 -translate-y-1/2"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">

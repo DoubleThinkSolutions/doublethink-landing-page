@@ -5,7 +5,7 @@ export default function LaptopNode({ animStep }: { animStep: AnimationStep }) {
   const isShowMapElements = animStep === 'laptop_show' || animStep === 'complete';
 
   return (
-    <div className="absolute right-[5%] top-[75%] -translate-y-1/2 flex flex-col items-center gap-2 select-none z-20">
+    <div className="absolute right-[0%] top-[75%] -translate-y-1/2 flex flex-col items-center gap-2 select-none z-20">
       <div className="flex flex-col items-center relative">
         {/* Laptop Display Shell */}
         <div className="w-44 h-28 bg-white border-2 border-gray-200 rounded-t-xl p-1.5 shadow-xl relative">
