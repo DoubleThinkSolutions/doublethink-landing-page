@@ -63,6 +63,8 @@ export function FullSiteNav({ isOpen, onClose, onNavigate }: FullSiteNavProps) {
     {
       title: 'Social',
       links: [
+        { label: 'Twitch', href: 'https://www.twitch.tv/doublethinksolutions' },
+        { label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61592794764590' },
         { label: 'X (Twitter)', href: 'https://x.com/StopDoublethink' },
         { label: 'YouTube', href: 'https://www.youtube.com/doublethinksolutions' },
         { label: 'LinkedIn', href: 'https://www.linkedin.com/company/doublethink-solutions' },
@@ -128,13 +130,17 @@ export function FullSiteNav({ isOpen, onClose, onNavigate }: FullSiteNavProps) {
       </div>
 
       {/* Main Grid Columns */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 my-auto py-12 max-w-5xl w-full mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-[repeat(3,auto)] justify-center gap-12 my-auto py-12 max-w-5xl w-full mx-auto">
         {categories.map((category, index) => (
           <motion.div key={index} variants={itemVariants} className="flex flex-col gap-6">
             <h3 className="font-sans text-xs text-primary-foreground font-bold uppercase tracking-widest border-l-2 border-primary-foreground pl-3">
               {category.title}
             </h3>
-            <ul className="flex flex-col gap-4">
+            <ul className={`gap-4 ${
+              category.links.length > 3 
+                ? 'grid grid-cols-2 gap-x-8' 
+                : 'flex flex-col'
+            }`}>
               {category.links.map((link, linkIdx) => (
                 <li key={linkIdx}>
                   {link.target ? (
@@ -158,7 +164,7 @@ export function FullSiteNav({ isOpen, onClose, onNavigate }: FullSiteNavProps) {
                       onMouseEnter={() => playTriggered(AudioId.TICK)}
                       className="text-2xl sm:text-3xl font-bold text-foreground-soft hover:text-primary-foreground-hover transition-colors text-left block group"
                     >
-                      <span className="inline-block transition-transform duration-300 group-hover:translate-x-2">
+                      <span className="whitespace-nowrap inline-block transition-transform duration-300 group-hover:translate-x-2">
                         {link.label} <span className="text-sm font-normal align-super">↗</span>
                       </span>
                     </a>
