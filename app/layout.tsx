@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { League_Spartan, Manrope } from "next/font/google";
 import localFont from "next/font/local";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import { AppProvider } from "./context/AppProvider";
 
@@ -80,6 +81,7 @@ export default function RootLayout({
           {children}
         </AppProvider>
       </body>
+      <GoogleAnalytics gaId="AW-18321366063" />
     </html>
   );
 }
